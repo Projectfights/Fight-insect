@@ -1,0 +1,197 @@
+﻿using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace InputListener
+{
+    internal struct Pair
+    {
+        public InputType up;
+        public InputType down;
+
+        public Pair(InputType up_, InputType down_)
+        {
+            up = up_;
+            down = down_;
+        }
+    }
+
+    internal static class KeyboardMapper
+    {
+        static Dictionary<Keys, Pair> map;
+
+        static KeyboardMapper()
+        {
+            map = new Dictionary<Keys, Pair>() {
+                { Keys.A, new Pair(InputType.A_Up, InputType.A_Down) },
+                { Keys.Add, new Pair(InputType.Add_Up, InputType.Add_Down) },
+                { Keys.Apps, new Pair(InputType.Apps_Up, InputType.Apps_Down) },
+                { Keys.Attn, new Pair(InputType.Attn_Up, InputType.Attn_Down) },
+                { Keys.B, new Pair(InputType.B_Up, InputType.B_Down) },
+                { Keys.Back, new Pair(InputType.Back_Up, InputType.Back_Down) },
+                { Keys.BrowserBack, new Pair(InputType.BrowserBack_Up, InputType.BrowserBack_Down) },
+                { Keys.BrowserFavorites, new Pair(InputType.BrowserFavorites_Up, InputType.BrowserFavorites_Down) },
+                { Keys.BrowserForward, new Pair(InputType.BrowserForward_Up, InputType.BrowserForward_Down) },
+                { Keys.BrowserHome, new Pair(InputType.BrowserHome_Up, InputType.BrowserHome_Down) },
+                { Keys.BrowserRefresh, new Pair(InputType.BrowserRefresh_Up, InputType.BrowserRefresh_Down) },
+                { Keys.BrowserSearch, new Pair(InputType.BrowserSearch_Up, InputType.BrowserSearch_Down) },
+                { Keys.BrowserStop, new Pair(InputType.BrowserStop_Up, InputType.BrowserStop_Down) },
+                { Keys.C, new Pair(InputType.C_Up, InputType.C_Down) },
+                { Keys.CapsLock, new Pair(InputType.CapsLock_Up, InputType.CapsLock_Down) },
+                { Keys.ChatPadGreen, new Pair(InputType.ChatPadGreen_Up, InputType.ChatPadGreen_Down) },
+                { Keys.ChatPadOrange, new Pair(InputType.ChatPadOrange_Up, InputType.ChatPadOrange_Down) },
+                { Keys.Crsel, new Pair(InputType.Crsel_Up, InputType.Crsel_Down) },
+                { Keys.D, new Pair(InputType.D_Up, InputType.D_Down) },
+                { Keys.D0, new Pair(InputType.D0_Up, InputType.D0_Down) },
+                { Keys.D1, new Pair(InputType.D1_Up, InputType.D1_Down) },
+                { Keys.D2, new Pair(InputType.D2_Up, InputType.D2_Down) },
+                { Keys.D3, new Pair(InputType.D3_Up, InputType.D3_Down) },
+                { Keys.D4, new Pair(InputType.D4_Up, InputType.D4_Down) },
+                { Keys.D5, new Pair(InputType.D5_Up, InputType.D5_Down) },
+                { Keys.D6, new Pair(InputType.D6_Up, InputType.D6_Down) },
+                { Keys.D7, new Pair(InputType.D7_Up, InputType.D7_Down) },
+                { Keys.D8, new Pair(InputType.D8_Up, InputType.D8_Down) },
+                { Keys.D9, new Pair(InputType.D9_Up, InputType.D9_Down) },
+                { Keys.Decimal, new Pair(InputType.Decimal_Up, InputType.Decimal_Down) },
+                { Keys.Delete, new Pair(InputType.Delete_Up, InputType.Delete_Down) },
+                { Keys.Divide, new Pair(InputType.Divide_Up, InputType.Divide_Down) },
+                { Keys.Down, new Pair(InputType.Down_Up, InputType.Down_Down) },
+                { Keys.E, new Pair(InputType.E_Up, InputType.E_Down) },
+                { Keys.End, new Pair(InputType.End_Up, InputType.End_Down) },
+                { Keys.Enter, new Pair(InputType.Enter_Up, InputType.Enter_Down) },
+                { Keys.EraseEof, new Pair(InputType.EraseEof_Up, InputType.EraseEof_Down) },
+                { Keys.Escape, new Pair(InputType.Escape_Up, InputType.Escape_Down) },
+                { Keys.Execute, new Pair(InputType.Execute_Up, InputType.Execute_Down) },
+                { Keys.Exsel, new Pair(InputType.Exsel_Up, InputType.Exsel_Down) },
+                { Keys.F, new Pair(InputType.F_Up, InputType.F_Down) },
+                { Keys.F1, new Pair(InputType.F1_Up, InputType.F1_Down) },
+                { Keys.F10, new Pair(InputType.F10_Up, InputType.F10_Down) },
+                { Keys.F11, new Pair(InputType.F11_Up, InputType.F11_Down) },
+                { Keys.F12, new Pair(InputType.F12_Up, InputType.F12_Down) },
+                { Keys.F13, new Pair(InputType.F13_Up, InputType.F13_Down) },
+                { Keys.F14, new Pair(InputType.F14_Up, InputType.F14_Down) },
+                { Keys.F15, new Pair(InputType.F15_Up, InputType.F15_Down) },
+                { Keys.F16, new Pair(InputType.F16_Up, InputType.F16_Down) },
+                { Keys.F17, new Pair(InputType.F17_Up, InputType.F17_Down) },
+                { Keys.F18, new Pair(InputType.F18_Up, InputType.F18_Down) },
+                { Keys.F19, new Pair(InputType.F19_Up, InputType.F19_Down) },
+                { Keys.F2, new Pair(InputType.F2_Up, InputType.F2_Down) },
+                { Keys.F20, new Pair(InputType.F20_Up, InputType.F20_Down) },
+                { Keys.F21, new Pair(InputType.F21_Up, InputType.F21_Down) },
+                { Keys.F22, new Pair(InputType.F22_Up, InputType.F22_Down) },
+                { Keys.F23, new Pair(InputType.F23_Up, InputType.F23_Down) },
+                { Keys.F24, new Pair(InputType.F24_Up, InputType.F24_Down) },
+                { Keys.F3, new Pair(InputType.F3_Up, InputType.F3_Down) },
+                { Keys.F4, new Pair(InputType.F4_Up, InputType.F4_Down) },
+                { Keys.F5, new Pair(InputType.F5_Up, InputType.F5_Down) },
+                { Keys.F6, new Pair(InputType.F6_Up, InputType.F6_Down) },
+                { Keys.F7, new Pair(InputType.F7_Up, InputType.F7_Down) },
+                { Keys.F8, new Pair(InputType.F8_Up, InputType.F8_Down) },
+                { Keys.F9, new Pair(InputType.F9_Up, InputType.F9_Down) },
+                { Keys.G, new Pair(InputType.G_Up, InputType.G_Down) },
+                { Keys.H, new Pair(InputType.H_Up, InputType.H_Down) },
+                { Keys.Help, new Pair(InputType.Help_Up, InputType.Help_Down) },
+                { Keys.Home, new Pair(InputType.Home_Up, InputType.Home_Down) },
+                { Keys.I, new Pair(InputType.I_Up, InputType.I_Down) },
+                { Keys.ImeConvert, new Pair(InputType.ImeConvert_Up, InputType.ImeConvert_Down) },
+                { Keys.ImeNoConvert, new Pair(InputType.ImeNoConvert_Up, InputType.ImeNoConvert_Down) },
+                { Keys.Insert, new Pair(InputType.Insert_Up, InputType.Insert_Down) },
+                { Keys.J, new Pair(InputType.J_Up, InputType.J_Down) },
+                { Keys.K, new Pair(InputType.K_Up, InputType.K_Down) },
+                { Keys.Kana, new Pair(InputType.Kana_Up, InputType.Kana_Down) },
+                { Keys.Kanji, new Pair(InputType.Kanji_Up, InputType.Kanji_Down) },
+                { Keys.L, new Pair(InputType.L_Up, InputType.L_Down) },
+                { Keys.LaunchApplication1, new Pair(InputType.LaunchApplication1_Up, InputType.LaunchApplication1_Down) },
+                { Keys.LaunchApplication2, new Pair(InputType.LaunchApplication2_Up, InputType.LaunchApplication2_Down) },
+                { Keys.LaunchMail, new Pair(InputType.LaunchMail_Up, InputType.LaunchMail_Down) },
+                { Keys.Left, new Pair(InputType.Left_Up, InputType.Left_Down) },
+                { Keys.LeftAlt, new Pair(InputType.LeftAlt_Up, InputType.LeftAlt_Down) },
+                { Keys.LeftControl, new Pair(InputType.LeftControl_Up, InputType.LeftControl_Down) },
+                { Keys.LeftShift, new Pair(InputType.LeftShift_Up, InputType.LeftShift_Down) },
+                { Keys.LeftWindows, new Pair(InputType.LeftWindows_Up, InputType.LeftWindows_Down) },
+                { Keys.M, new Pair(InputType.M_Up, InputType.M_Down) },
+                { Keys.MediaNextTrack, new Pair(InputType.MediaNextTrack_Up, InputType.MediaNextTrack_Down) },
+                { Keys.MediaPlayPause, new Pair(InputType.MediaPlayPause_Up, InputType.MediaPlayPause_Down) },
+                { Keys.MediaPreviousTrack, new Pair(InputType.MediaPreviousTrack_Up, InputType.MediaPreviousTrack_Down) },
+                { Keys.MediaStop, new Pair(InputType.MediaStop_Up, InputType.MediaStop_Down) },
+                { Keys.Multiply, new Pair(InputType.Multiply_Up, InputType.Multiply_Down) },
+                { Keys.N, new Pair(InputType.N_Up, InputType.N_Down) },
+                { Keys.None, new Pair(InputType.None_Up, InputType.None_Down) },
+                { Keys.NumLock, new Pair(InputType.NumLock_Up, InputType.NumLock_Down) },
+                { Keys.NumPad0, new Pair(InputType.NumPad0_Up, InputType.NumPad0_Down) },
+                { Keys.NumPad1, new Pair(InputType.NumPad1_Up, InputType.NumPad1_Down) },
+                { Keys.NumPad2, new Pair(InputType.NumPad2_Up, InputType.NumPad2_Down) },
+                { Keys.NumPad3, new Pair(InputType.NumPad3_Up, InputType.NumPad3_Down) },
+                { Keys.NumPad4, new Pair(InputType.NumPad4_Up, InputType.NumPad4_Down) },
+                { Keys.NumPad5, new Pair(InputType.NumPad5_Up, InputType.NumPad5_Down) },
+                { Keys.NumPad6, new Pair(InputType.NumPad6_Up, InputType.NumPad6_Down) },
+                { Keys.NumPad7, new Pair(InputType.NumPad7_Up, InputType.NumPad7_Down) },
+                { Keys.NumPad8, new Pair(InputType.NumPad8_Up, InputType.NumPad8_Down) },
+                { Keys.NumPad9, new Pair(InputType.NumPad9_Up, InputType.NumPad9_Down) },
+                { Keys.O, new Pair(InputType.O_Up, InputType.O_Down) },
+                { Keys.Oem8, new Pair(InputType.Oem8_Up, InputType.Oem8_Down) },
+                { Keys.OemAuto, new Pair(InputType.OemAuto_Up, InputType.OemAuto_Down) },
+                { Keys.OemBackslash, new Pair(InputType.OemBackslash_Up, InputType.OemBackslash_Down) },
+                { Keys.OemClear, new Pair(InputType.OemClear_Up, InputType.OemClear_Down) },
+                { Keys.OemCloseBrackets, new Pair(InputType.OemCloseBrackets_Up, InputType.OemCloseBrackets_Down) },
+                { Keys.OemComma, new Pair(InputType.OemComma_Up, InputType.OemComma_Down) },
+                { Keys.OemCopy, new Pair(InputType.OemCopy_Up, InputType.OemCopy_Down) },
+                { Keys.OemEnlW, new Pair(InputType.OemEnlW_Up, InputType.OemEnlW_Down) },
+                { Keys.OemMinus, new Pair(InputType.OemMinus_Up, InputType.OemMinus_Down) },
+                { Keys.OemOpenBrackets, new Pair(InputType.OemOpenBrackets_Up, InputType.OemOpenBrackets_Down) },
+                { Keys.OemPeriod, new Pair(InputType.OemPeriod_Up, InputType.OemPeriod_Down) },
+                { Keys.OemPipe, new Pair(InputType.OemPipe_Up, InputType.OemPipe_Down) },
+                { Keys.OemPlus, new Pair(InputType.OemPlus_Up, InputType.OemPlus_Down) },
+                { Keys.OemQuestion, new Pair(InputType.OemQuestion_Up, InputType.OemQuestion_Down) },
+                { Keys.OemQuotes, new Pair(InputType.OemQuotes_Up, InputType.OemQuotes_Down) },
+                { Keys.OemSemicolon, new Pair(InputType.OemSemicolon_Up, InputType.OemSemicolon_Down) },
+                { Keys.OemTilde, new Pair(InputType.OemTilde_Up, InputType.OemTilde_Down) },
+                { Keys.P, new Pair(InputType.P_Up, InputType.P_Down) },
+                { Keys.Pa1, new Pair(InputType.Pa1_Up, InputType.Pa1_Down) },
+                { Keys.PageDown, new Pair(InputType.PageDown_Up, InputType.PageDown_Down) },
+                { Keys.PageUp, new Pair(InputType.PageUp_Up, InputType.PageUp_Down) },
+                { Keys.Pause, new Pair(InputType.Pause_Up, InputType.Pause_Down) },
+                { Keys.Play, new Pair(InputType.Play_Up, InputType.Play_Down) },
+                { Keys.Print, new Pair(InputType.Print_Up, InputType.Print_Down) },
+                { Keys.PrintScreen, new Pair(InputType.PrintScreen_Up, InputType.PrintScreen_Down) },
+                { Keys.ProcessKey, new Pair(InputType.ProcessKey_Up, InputType.ProcessKey_Down) },
+                { Keys.Q, new Pair(InputType.Q_Up, InputType.Q_Down) },
+                { Keys.R, new Pair(InputType.R_Up, InputType.R_Down) },
+                { Keys.Right, new Pair(InputType.Right_Up, InputType.Right_Down) },
+                { Keys.RightAlt, new Pair(InputType.RightAlt_Up, InputType.RightAlt_Down) },
+                { Keys.RightControl, new Pair(InputType.RightControl_Up, InputType.RightControl_Down) },
+                { Keys.RightShift, new Pair(InputType.RightShift_Up, InputType.RightShift_Down) },
+                { Keys.RightWindows, new Pair(InputType.RightWindows_Up, InputType.RightWindows_Down) },
+                { Keys.S, new Pair(InputType.S_Up, InputType.S_Down) },
+                { Keys.Scroll, new Pair(InputType.Scroll_Up, InputType.Scroll_Down) },
+                { Keys.Select, new Pair(InputType.Select_Up, InputType.Select_Down) },
+                { Keys.SelectMedia, new Pair(InputType.SelectMedia_Up, InputType.SelectMedia_Down) },
+                { Keys.Separator, new Pair(InputType.Separator_Up, InputType.Separator_Down) },
+                { Keys.Sleep, new Pair(InputType.Sleep_Up, InputType.Sleep_Down) },
+                { Keys.Space, new Pair(InputType.Space_Up, InputType.Space_Down) },
+                { Keys.Subtract, new Pair(InputType.Subtract_Up, InputType.Subtract_Down) },
+                { Keys.T, new Pair(InputType.T_Up, InputType.T_Down) },
+                { Keys.Tab, new Pair(InputType.Tab_Up, InputType.Tab_Down) },
+                { Keys.U, new Pair(InputType.U_Up, InputType.U_Down) },
+                { Keys.Up, new Pair(InputType.Up_Up, InputType.Up_Down) },
+                { Keys.V, new Pair(InputType.V_Up, InputType.V_Down) },
+                { Keys.VolumeDown, new Pair(InputType.VolumeDown_Up, InputType.VolumeDown_Down) },
+                { Keys.VolumeMute, new Pair(InputType.VolumeMute_Up, InputType.VolumeMute_Down) },
+                { Keys.VolumeUp, new Pair(InputType.VolumeUp_Up, InputType.VolumeUp_Down) },
+                { Keys.W, new Pair(InputType.W_Up, InputType.W_Down) },
+                { Keys.X, new Pair(InputType.X_Up, InputType.X_Down) },
+                { Keys.Y, new Pair(InputType.Y_Up, InputType.Y_Down) },
+                { Keys.Z, new Pair(InputType.Z_Up, InputType.Z_Down) },
+                { Keys.Zoom, new Pair(InputType.Zoom_Up, InputType.Zoom_Down) }
+            };
+        }
+
+        public static InputType InputFromKey(Keys k, Boolean up)
+        {
+            Pair p = map[k];
+            return up ? p.up : p.down;
+        }
+    }
+}
