@@ -7,23 +7,33 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Bug.Screens.Abstract;
+using Bug.Screens.Concrete;
+using System.Xml;
 #endregion
 
-namespace SuperBugFighter
+namespace Bug
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : Game, IScreenMaster
     {
+        int widthScreen, heightScreen;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Screen s;
 
         public Game1()
             : base()
         {
+            widthScreen = 800;
+            heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -35,6 +45,12 @@ namespace SuperBugFighter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = widthScreen;
+            graphics.PreferredBackBufferHeight = heightScreen;
+            graphics.ApplyChanges();
+
+            Change<MainMenuScreen>();
 
             base.Initialize();
         }
@@ -67,10 +83,7 @@ namespace SuperBugFighter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
+            s.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -84,8 +97,18 @@ namespace SuperBugFighter
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
+        }
+
+        public C Load<C>(string name)
+        {
+            return Content.Load<C>(name);
+        }
+
+        public void Change<S>() where S : Screen
+        {
+            s = (Screen)Activator.CreateInstance(typeof(S), widthScreen, heightScreen, this);
         }
     }
 }
