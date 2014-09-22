@@ -84,10 +84,6 @@
       <Project>{a902f556-4022-4429-93cb-d05d0e04d4fc}</Project>
       <Name>Assets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InputListener\InputListener.csproj">
-      <Project>{c0a56a8c-f3a1-4a1b-b269-42255f18e658}</Project>
-      <Name>InputListener</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
