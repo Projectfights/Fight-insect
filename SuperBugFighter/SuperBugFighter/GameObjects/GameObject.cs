@@ -18,11 +18,11 @@ namespace Bug
             this.pos = pos;
         }
 
-        public abstract void Update(long timePassed);
+        public abstract void Update(GameTime gameTime);
 
-        public abstract void Draw(SpriteBatch sBatch);
+        public abstract void Draw(SpriteBatch spriteBatch);
 
 
-	    
+
     }
 }

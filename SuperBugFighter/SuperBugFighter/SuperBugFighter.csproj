@@ -42,7 +42,7 @@
     <Compile Include="Display\TextButton.cs" />
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\Abstract\IScreenMaster.cs" />
