@@ -34,7 +34,7 @@ namespace Bug.Screens.Concrete
             Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
 
-            //newGame.select += delegate() { LevelLoader.Load(1); ChangeScreen<StoryScreen>(); };
+            newGame.select += delegate() { ChangeScreen<GameScreen>(); };
             loadGame.select += delegate() { ChangeScreen<LoadGameScreen>(); };
             options.select += delegate() { ChangeScreen<OptionScreen>(); };
 

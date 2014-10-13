@@ -24,7 +24,6 @@ namespace Bug
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        List<GameObject> gameObjects;
 
         Screen s;
 
@@ -87,11 +86,6 @@ namespace Bug
         {
             s.Update(gameTime);
 
-            foreach (GameObject g in gameObjects)
-            {
-                g.Update(gameTime);
-            }
-
             base.Update(gameTime);
         }
 
@@ -102,14 +96,7 @@ namespace Bug
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            // TODO: Add your drawing code here
-            foreach (GameObject g in gameObjects)
-            {
-                g.Draw(spriteBatch);
-            }
-            
-            spriteBatch.End();
+
             s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
