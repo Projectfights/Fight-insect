@@ -33,6 +33,7 @@ namespace Bug
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        List<GameObject> gameObjects;
 
         Screen s;
 
@@ -98,6 +99,11 @@ namespace Bug
             s.Update(gameTime);
 
             base.Update(gameTime);
+
+            foreach (GameObject g in gameObjects)
+            {
+                g.Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -110,6 +116,11 @@ namespace Bug
 
             s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
+
+            foreach (GameObject g in gameObjects)
+            {
+                g.Draw(spriteBatch);
+            }
         }
 
         public C Load<C>(string name)
