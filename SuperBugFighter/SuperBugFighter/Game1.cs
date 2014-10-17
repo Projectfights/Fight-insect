@@ -19,6 +19,15 @@ namespace Bug
     /// </summary>
     public class Game1 : Game, IScreenMaster
     {
+        static Game1 gameRef;
+        public static Game1 gameReference
+        {
+            get
+            {
+                return gameRef;
+            }
+        }
+
 
         int widthScreen, heightScreen;
 
@@ -31,11 +40,13 @@ namespace Bug
         public Game1()
             : base()
         {
+            gameRef = this;
             widthScreen = 800;
             heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
+            gameObjects = new List<GameObject>();
         }
 
         /// <summary>
