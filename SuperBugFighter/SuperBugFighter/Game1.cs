@@ -19,34 +19,22 @@ namespace Bug
     /// </summary>
     public class Game1 : Game, IScreenMaster
     {
-        static Game1 gameRef;
-        public static Game1 gameReference
-        {
-            get
-            {
-                return gameRef;
-            }
-        }
-
 
         int widthScreen, heightScreen;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        List<GameObject> gameObjects;
 
         Screen s;
 
         public Game1()
             : base()
         {
-            gameRef = this;
             widthScreen = 800;
             heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
-            gameObjects = new List<GameObject>();
         }
 
         /// <summary>
@@ -100,10 +88,6 @@ namespace Bug
 
             base.Update(gameTime);
 
-            foreach (GameObject g in gameObjects)
-            {
-                g.Update(gameTime);
-            }
         }
 
         /// <summary>
@@ -117,10 +101,6 @@ namespace Bug
             s.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
 
-            foreach (GameObject g in gameObjects)
-            {
-                g.Draw(spriteBatch);
-            }
         }
 
         public C Load<C>(string name)
