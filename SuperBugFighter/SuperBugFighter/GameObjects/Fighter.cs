@@ -48,7 +48,7 @@ namespace Bug.GameObjects
                 //Jump if up is pressed
                 else if (k == up && Vel.Y == 0)
                 {
-                    Vel = new Vector2(Vel.X, -speed * 2);
+                    Vel = new Vector2(Vel.X, -speed * 5);
                 }
             }
         }

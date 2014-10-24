@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using Bug.Screens.Abstract;
 using GameLogic.Model.Display;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Bug.Screens.Concrete
 {
@@ -15,6 +17,12 @@ namespace Bug.Screens.Concrete
     {
         public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
+            SoundEffect song = Load<SoundEffect>("Audio/Menu");
+ 
+            SoundEffectInstance soundEffectInstance = song.CreateInstance();
+            soundEffectInstance.IsLooped = true;
+            soundEffectInstance.Play();
+
             Texture2D up = Load<Texture2D>("Image/buttonUp");
             Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
@@ -34,9 +42,9 @@ namespace Bug.Screens.Concrete
             Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
 
-            newGame.select += delegate() { ChangeScreen<GameScreen>(); };
-            loadGame.select += delegate() { ChangeScreen<LoadGameScreen>(); };
-            options.select += delegate() { ChangeScreen<OptionScreen>(); };
+            newGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<GameScreen>(); };
+            loadGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<LoadGameScreen>(); };
+            options.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<OptionScreen>(); };
 
             buttons.Add(newGame);
             buttons.Add(loadGame);

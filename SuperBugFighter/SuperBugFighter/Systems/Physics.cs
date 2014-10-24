@@ -16,7 +16,7 @@ namespace Bug.Systems
     class Physics
     {
         private static readonly double Gravity = .1;
-        private static readonly double GSpeed = .4;
+        private static readonly double GSpeed = .6;
         private static readonly double GroundY = 400;
 
         public void ApplyGravity(Dynamic o)
