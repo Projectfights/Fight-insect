@@ -33,23 +33,32 @@ namespace Bug.GameObjects
         {
             //Iterate over pressed keys to check if the left/right keys for this figher are pressed
             Keys[] newKeys = Keyboard.GetState().GetPressedKeys();
+            bool gotDirInput = false;
             foreach(Keys k in newKeys)
             {
                 //Move left if left is pressed
                 if (k == left)
                 {
                     Vel = new Vector2(-speed, Vel.Y);
+                    gotDirInput = true;
                 }
                 //Move right if right is pressed
                 else if (k == right)
                 {
                     Vel = new Vector2(speed, Vel.Y);
+                    gotDirInput = true;
                 }
                 //Jump if up is pressed
                 else if (k == up && Vel.Y == 0)
                 {
                     Vel = new Vector2(Vel.X, -speed * 2);
                 }
+            }
+
+            //If no directional input, reset X velocity.
+            if (!gotDirInput)
+            {
+               Vel = new Vector2(0, Vel.Y);
             }
         }
 
@@ -75,7 +84,7 @@ namespace Bug.GameObjects
                         break;
                     case Direction.E:
                         Vel = new Vector2(Math.Max(Vel.X, 0), Vel.Y);
-                        ResetPos();
+                        ResetPosX();
                         break;
                     case Direction.S:
                         Vel = new Vector2(Vel.X, Math.Max(Vel.Y, 0));
@@ -83,7 +92,7 @@ namespace Bug.GameObjects
                         break;
                     case Direction.W:
                         Vel = new Vector2(Math.Min(Vel.X, 0), Vel.Y);
-                        ResetPos();
+                        ResetPosX();
                         break;
                 }
             }

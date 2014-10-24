@@ -28,6 +28,7 @@ namespace Bug.Systems
             else
             {
                 o.Vel = new Vector2(o.Vel.X, Math.Min(o.Vel.Y, 0));
+                o.SetPos(new Vector2(o.Pos.X, (float)(GroundY - o.GetBoundingBox().Height)));
             }
         }
 
@@ -75,7 +76,7 @@ namespace Bug.Systems
                     }
                 }
 
-                o.Vel = new Vector2(0, o.Vel.Y);
+                //o.Vel = new Vector2(0, o.Vel.Y);
             }
         }
     }
