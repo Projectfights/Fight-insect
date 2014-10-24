@@ -15,10 +15,14 @@ namespace Bug.GameObjects
         //Fighter texture
         private Texture2D tex;
 
+        //Horizontal move speed
         private float speed;
 
         //Keys to use for left and right
         private Keys left, right, up;
+
+        //Figher health
+        public double Health {get; private set; }
 
         public Fighter(Vector2 pos, Texture2D tex_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
         {
@@ -27,6 +31,7 @@ namespace Bug.GameObjects
             left = left_;
             right = right_;
             up = up_;
+            Health = 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -81,6 +86,8 @@ namespace Bug.GameObjects
                     case Direction.N:
                         Vel = new Vector2(Vel.X, Math.Min(Vel.Y,0));
                         ResetPosY();
+                        //Decrease health if hit from above
+                        Health -= 1.0 / 500.0;
                         break;
                     case Direction.E:
                         Vel = new Vector2(Math.Max(Vel.X, 0), Vel.Y);
