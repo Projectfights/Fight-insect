@@ -18,14 +18,15 @@ namespace Bug.GameObjects
         private float speed;
 
         //Keys to use for left and right
-        private Keys left, right;
+        private Keys left, right, up;
 
-        public Fighter(Vector2 pos, Texture2D tex_, Keys left_, Keys right_) : base(pos)
+        public Fighter(Vector2 pos, Texture2D tex_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
         {
             tex = tex_;
-            speed = .5f;
+            speed = speed_;
             left = left_;
             right = right_;
+            up = up_;
         }
 
         public override void Update(GameTime gameTime)
@@ -44,6 +45,11 @@ namespace Bug.GameObjects
                 {
                     Vel = new Vector2(speed, Vel.Y);
                 }
+                //Jump if up is pressed
+                else if (k == up && Vel.Y == 0)
+                {
+                    Vel = new Vector2(Vel.X, -speed * 2);
+                }
             }
         }
 
@@ -61,19 +67,25 @@ namespace Bug.GameObjects
         {
             if (other is Fighter)
             {
-                float x = Vel.X;
                 switch(dir)
                 {
+                    case Direction.N:
+                        Vel = new Vector2(Vel.X, Math.Min(Vel.Y,0));
+                        ResetPosY();
+                        break;
                     case Direction.E:
-                        x = Math.Max(x, 0);
+                        Vel = new Vector2(Math.Max(Vel.X, 0), Vel.Y);
+                        ResetPos();
+                        break;
+                    case Direction.S:
+                        Vel = new Vector2(Vel.X, Math.Max(Vel.Y, 0));
+                        ResetPosY();
                         break;
                     case Direction.W:
-                        x = Math.Min(x, 0);
-                        break;
-                    default:
+                        Vel = new Vector2(Math.Min(Vel.X, 0), Vel.Y);
+                        ResetPos();
                         break;
                 }
-                Vel = new Vector2(x, Vel.Y);
             }
         }
     }

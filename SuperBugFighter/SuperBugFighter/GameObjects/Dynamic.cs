@@ -10,6 +10,7 @@ namespace Bug.GameObjects
 {
     abstract class Dynamic : GameObject
     {
+        private Vector2 oldPos;
         public Vector2 Vel { get; set; }
 
         //Default constuctor, sets position to (0,0)
@@ -30,6 +31,27 @@ namespace Bug.GameObjects
             : base(pos)
         {
             Vel = vel_;
+        }
+
+        public override void SetPos(Vector2 pos)
+        {
+            oldPos = Pos;
+            base.SetPos(pos);
+        }
+
+        public void ResetPos()
+        {
+            SetPos(oldPos);
+        }
+
+        public void ResetPosX()
+        {
+            SetPos(new Vector2(oldPos.X, Pos.Y));
+        }
+
+        public void ResetPosY()
+        {
+            SetPos(new Vector2(Pos.X, oldPos.Y));
         }
 
         public abstract void OnCollision(GameObject other, Direction dir);

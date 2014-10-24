@@ -21,8 +21,8 @@ namespace Bug.Screens.Concrete
         {
             p = new Physics();
             bg = new Background(Load<Texture2D>("Image/bg"));
-            p1 = new Fighter(new Vector2(50, 150), Load<Texture2D>("Image/blue"), Keys.A, Keys.D);
-            p2 = new Fighter(new Vector2(750, 150), Load<Texture2D>("Image/red"), Keys.Left, Keys.Right);
+            p1 = new Fighter(new Vector2(50, 150), Load<Texture2D>("Image/blue"), .5f, Keys.A, Keys.D, Keys.W);
+            p2 = new Fighter(new Vector2(750, 150), Load<Texture2D>("Image/red"), .5f, Keys.Left, Keys.Right, Keys.Up);
         }
 
         public override void Update(GameTime gameTime)

@@ -15,8 +15,8 @@ namespace Bug.Systems
 
     class Physics
     {
-        private static readonly double Gravity = .8;
-        private static readonly double GSpeed = .6;
+        private static readonly double Gravity = .1;
+        private static readonly double GSpeed = .4;
         private static readonly double GroundY = 300;
 
         public void ApplyGravity(Dynamic o)
@@ -27,8 +27,7 @@ namespace Bug.Systems
             }
             else
             {
-                o.Vel = new Vector2(o.Vel.X, 0);
-                o.Pos = new Vector2(o.Pos.X, (float)GroundY);
+                o.Vel = new Vector2(o.Vel.X, Math.Min(o.Vel.Y, 0));
             }
         }
 
@@ -66,6 +65,8 @@ namespace Bug.Systems
             {
                 ApplyGravity(o);
 
+                o.SetPos(o.Pos + o.Vel * (float)deltaTime);
+
                 foreach (GameObject e in environment)
                 {
                     if (o != e)
@@ -73,8 +74,6 @@ namespace Bug.Systems
                         Collision(o, e);
                     }
                 }
-
-                o.Pos += o.Vel * (float)deltaTime;
 
                 o.Vel = new Vector2(0, o.Vel.Y);
             }

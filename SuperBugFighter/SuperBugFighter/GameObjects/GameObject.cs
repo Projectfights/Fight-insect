@@ -9,7 +9,7 @@ namespace Bug
     public abstract class GameObject
     {
         //Position of the GameObject
-        public Vector2 Pos{get; set;}
+        public Vector2 Pos { get; private set; }
 
         //Default constuctor, sets position to (0,0)
         public GameObject()
@@ -21,6 +21,11 @@ namespace Bug
         public GameObject(Vector2 pos)
         {
             this.Pos = pos;
+        }
+
+        public virtual void SetPos(Vector2 pos)
+        {
+            Pos = pos;
         }
 
         //Update the state of this GameObject
