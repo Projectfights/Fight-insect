@@ -14,6 +14,7 @@ namespace Bug.GameObjects
     {
         //Fighter texture
         private Texture2D tex;
+        private bool flip;
 
         //Horizontal move speed
         private float speed;
@@ -24,9 +25,10 @@ namespace Bug.GameObjects
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, Texture2D tex_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
+        public Fighter(Vector2 pos, Texture2D tex_, bool flip_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
         {
             tex = tex_;
+            flip = flip_;
             speed = speed_;
             left = left_;
             right = right_;
@@ -46,12 +48,14 @@ namespace Bug.GameObjects
                 {
                     Vel = new Vector2(-speed, Vel.Y);
                     gotDirInput = true;
+                    flip = true;
                 }
                 //Move right if right is pressed
                 else if (k == right)
                 {
                     Vel = new Vector2(speed, Vel.Y);
                     gotDirInput = true;
+                    flip = false;
                 }
                 //Jump if up is pressed
                 else if (k == up && Vel.Y == 0)
@@ -69,7 +73,7 @@ namespace Bug.GameObjects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, GetBoundingBox(), Color.White);
+            spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
         }
 
         public override Rectangle GetBoundingBox()

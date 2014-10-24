@@ -23,8 +23,8 @@ namespace Bug.Screens.Concrete
             p = new Physics();
             bg = new Background(Load<Texture2D>("Image/stage"));
 
-            p1 = new Fighter(new Vector2(50, 150), Load<Texture2D>("Image/beetle"), .5f, Keys.A, Keys.D, Keys.W);
-            p2 = new Fighter(new Vector2(590, 150), Load<Texture2D>("Image/beetle"), .5f, Keys.Left, Keys.Right, Keys.Up);
+            p1 = new Fighter(new Vector2(50, 150), Load<Texture2D>("Image/beetle"), false, .5f, Keys.A, Keys.D, Keys.W);
+            p2 = new Fighter(new Vector2(440, 150), Load<Texture2D>("Image/beetle2"), true, .5f, Keys.Left, Keys.Right, Keys.Up);
             h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), new Vector2(10, 10));
             h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), new Vector2(widthScreen - 110, 10));
         }
