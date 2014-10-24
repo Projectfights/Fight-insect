@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Bug.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -9,16 +10,20 @@ using System.Text;
 namespace Bug.GameObjects
 {
     //A player-controlled fighter
-    class Fighter : GameObject
+    class Fighter : Dynamic
     {
         //Fighter texture
         private Texture2D tex;
+
+        private float speed;
+
         //Keys to use for left and right
         private Keys left, right;
 
         public Fighter(Vector2 pos, Texture2D tex_, Keys left_, Keys right_) : base(pos)
         {
             tex = tex_;
+            speed = .5f;
             left = left_;
             right = right_;
         }
@@ -32,19 +37,44 @@ namespace Bug.GameObjects
                 //Move left if left is pressed
                 if (k == left)
                 {
-                    pos.X -= 3;
+                    Vel = new Vector2(-speed, Vel.Y);
                 }
                 //Move right if right is pressed
                 else if (k == right)
                 {
-                    pos.X += 3;
+                    Vel = new Vector2(speed, Vel.Y);
                 }
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, new Rectangle((int) pos.X, (int) pos.Y, tex.Width, tex.Height), Color.White);
+            spriteBatch.Draw(tex, GetBoundingBox(), Color.White);
+        }
+
+        public override Rectangle GetBoundingBox()
+        {
+            return new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
+        }
+
+        public override void OnCollision(GameObject other, Direction dir)
+        {
+            if (other is Fighter)
+            {
+                float x = Vel.X;
+                switch(dir)
+                {
+                    case Direction.E:
+                        x = Math.Max(x, 0);
+                        break;
+                    case Direction.W:
+                        x = Math.Min(x, 0);
+                        break;
+                    default:
+                        break;
+                }
+                Vel = new Vector2(x, Vel.Y);
+            }
         }
     }
 }

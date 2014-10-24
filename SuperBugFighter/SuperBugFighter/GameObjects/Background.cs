@@ -22,7 +22,13 @@ namespace Bug.GameObjects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, new Rectangle((int) pos.X, (int) pos.Y, tex.Width, tex.Height), Color.White);
+            spriteBatch.Draw(tex, GetBoundingBox(), Color.White);
         }
+
+        public override Rectangle GetBoundingBox()
+        {
+            return new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
+        }
+
     }
 }

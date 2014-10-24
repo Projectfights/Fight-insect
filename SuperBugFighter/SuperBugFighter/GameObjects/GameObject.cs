@@ -9,18 +9,18 @@ namespace Bug
     public abstract class GameObject
     {
         //Position of the GameObject
-        protected Vector2 pos;
+        public Vector2 Pos{get; set;}
 
         //Default constuctor, sets position to (0,0)
         public GameObject()
         {
-            this.pos = new Vector2();
+            this.Pos = new Vector2();
         }
 
         //Constructor, sets the initial position to the given point
         public GameObject(Vector2 pos)
         {
-            this.pos = pos;
+            this.Pos = pos;
         }
 
         //Update the state of this GameObject
@@ -29,7 +29,7 @@ namespace Bug
         //Draw this GameObject to the screen
         public abstract void Draw(SpriteBatch spriteBatch);
 
-
-
+        // Get the collision box for the game object
+        public abstract Rectangle GetBoundingBox();
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="Display\UiElement.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Background.cs" />
+    <Compile Include="GameObjects\Dynamic.cs" />
     <Compile Include="GameObjects\Fighter.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Program.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Screens\Concrete\LoadGameScreen.cs" />
     <Compile Include="Screens\Concrete\MainMenuScreen.cs" />
     <Compile Include="Screens\Concrete\OptionScreen.cs" />
+    <Compile Include="Systems\Physics.cs" />
     <Compile Include="Utils\AnimatedTexture2D.cs" />
     <Compile Include="Utils\AnimatedTexture2DReader.cs" />
   </ItemGroup>
