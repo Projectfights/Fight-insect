@@ -30,7 +30,7 @@ namespace Bug
         public Game1()
             : base()
         {
-            widthScreen = 800;
+            widthScreen = 640;
             heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

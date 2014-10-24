@@ -17,11 +17,11 @@ namespace Bug.Systems
     {
         private static readonly double Gravity = .1;
         private static readonly double GSpeed = .4;
-        private static readonly double GroundY = 300;
+        private static readonly double GroundY = 270;
 
         public void ApplyGravity(Dynamic o)
         {
-            if (o.Pos.Y < GroundY)
+            if (o.GetBoundingBox().Bottom < GroundY)
             {
                 o.Vel = new Vector2(o.Vel.X, (float)(o.Vel.Y * (1 - Gravity) + GSpeed * Gravity));
             }
