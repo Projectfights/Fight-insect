@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <sheet>Image/testAnimSelect.png</sheet>
+  <fps>24</fps>
+  <width>32</width>
+  <height>64</height>
+  <row>2</row>
+  <col>8</col>
+</XnaContent>
