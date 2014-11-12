@@ -11,28 +11,49 @@ namespace Bug.Utils
     {
         private Texture2D sheet;
         
-        private double frameTime;
-        private int w, h, row, col;
+        private double frameTime, elapsedTime;
+        private int index, w, h, row, col;
 
         public AnimatedTexture2D(Texture2D sheet_, int w_, int h_, int row_, int col_, int fps)
         {
             sheet = sheet_;
 
+            index = 0;
             w = w_;
             h = h_;
             row = row_;
             col = col_;
+            elapsedTime = 0;
 
             SetFPS(fps);
         }
 
         public void SetFPS(int fps)
         {
-            frameTime = 1d / fps;
+            // The 2 is a total fudge-factor
+            frameTime = 2 * 1000d / fps;
         }
 
         public void UpdateTime(GameTime gameTime)
         {
+            elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (elapsedTime > frameTime)
+            {
+                index++;
+
+                if (index >= row * col)
+                {
+                    index = 0;
+                }
+
+                elapsedTime = elapsedTime % frameTime;
+            }
+        }
+
+        public void Reset()
+        {
+            index = 0;
         }
 
         public Texture2D GetSheet()
@@ -40,7 +61,12 @@ namespace Bug.Utils
             return sheet;
         }
 
-        public Rectangle GetWindow(int index)
+        public void SetSheet(Texture2D sheet_)
+        {
+            sheet = sheet_;
+        }
+
+        public Rectangle GetWindow()
         {
             return new Rectangle(index % col * w, index / col * h, w, h);
         }

@@ -1,4 +1,5 @@
 ﻿using Bug.Systems;
+using Bug.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,6 +15,8 @@ namespace Bug.GameObjects
     {
         //Fighter texture
         private Texture2D tex;
+        private AnimatedTexture2D anim;
+
         private bool flip;
 
         //Horizontal move speed
@@ -25,9 +28,10 @@ namespace Bug.GameObjects
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, Texture2D tex_, bool flip_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
+        public Fighter(Vector2 pos, Texture2D tex_, AnimatedTexture2D anim_, bool flip_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
         {
             tex = tex_;
+            anim = anim_;
             flip = flip_;
             speed = speed_;
             left = left_;
@@ -38,6 +42,8 @@ namespace Bug.GameObjects
 
         public override void Update(GameTime gameTime)
         {
+            anim.UpdateTime(gameTime);
+
             //Iterate over pressed keys to check if the left/right keys for this figher are pressed
             Keys[] newKeys = Keyboard.GetState().GetPressedKeys();
             bool gotDirInput = false;
@@ -73,12 +79,13 @@ namespace Bug.GameObjects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            //spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            spriteBatch.Draw(anim.GetSheet(), GetBoundingBox(), anim.GetWindow(), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
         }
 
         public override Rectangle GetBoundingBox()
         {
-            return new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
+            return new Rectangle((int)Pos.X, (int)Pos.Y, anim.GetWidth(), anim.GetHeight());//new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
         }
 
         public override void OnCollision(GameObject other, Direction dir)
