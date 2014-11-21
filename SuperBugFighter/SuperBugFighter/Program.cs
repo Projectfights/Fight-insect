@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 #endregion
 
-namespace SuperBugFighter
+namespace Bug
 {
 #if WINDOWS || LINUX
     /// <summary>

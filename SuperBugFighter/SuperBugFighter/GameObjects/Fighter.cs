@@ -1,4 +1,5 @@
 ﻿using Bug.Systems;
+using Bug.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,72 +14,76 @@ namespace Bug.GameObjects
     class Fighter : Dynamic
     {
         //Fighter texture
-        private Texture2D tex;
+        private AnimatedTexture2D anim;
+
         private bool flip;
 
         //Horizontal move speed
         private float speed;
 
-        //Keys to use for leC:\Users\Henry\Source\Repos\Fight-insect\SuperBugFighter\SuperBugFighter\GameObjects\Fighter.csft and right
-        private Keys left, right, up;
+        private FighterInput input;
 
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, Texture2D tex_, bool flip_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
+        public Fighter(Vector2 pos, AnimatedTexture2D anim_, FighterInput input_, bool flip_, float speed_) : base(pos)
         {
-            tex = tex_;
+            anim = anim_;
+            input = input_;
             flip = flip_;
             speed = speed_;
-            left = left_;
-            right = right_;
-            up = up_;
             Health = 1;
         }
 
-        public override void Update(GameTime gameTime)
+        private void HandleInputs()
         {
-            //Iterate over pressed keys to check if the left/right keys for this figher are pressed
-            Keys[] newKeys = Keyboard.GetState().GetPressedKeys();
+            double left = input.left();
+            double right = input.right();
             bool gotDirInput = false;
-            foreach(Keys k in newKeys)
+
+            //Move left if left is pressed
+            if (left > 0)
             {
-                //Move left if left is pressed
-                if (k == left)
-                {
-                    Vel = new Vector2(-speed, Vel.Y);
-                    gotDirInput = true;
-                    flip = true;
-                }
-                //Move right if right is pressed
-                else if (k == right)
-                {
-                    Vel = new Vector2(speed, Vel.Y);
-                    gotDirInput = true;
-                    flip = false;
-                }
-                //Jump if up is pressed
-                else if (k == up && Vel.Y == 0)
-                {
-                    Vel = new Vector2(Vel.X, -speed * 5);
-                }
+                Vel = new Vector2((float)(-speed * left), Vel.Y);
+                gotDirInput = true;
+                flip = true;
+            }
+            //Move right if right is pressed
+            else if (right > 0)
+            {
+                Vel = new Vector2((float)(speed * right), Vel.Y);
+                gotDirInput = true;
+                flip = false;
+            }
+            //Jump if up is pressed
+
+            if (input.up() == 1 && Vel.Y == 0)
+            {
+                Vel = new Vector2(Vel.X, -speed * 5);
             }
 
             //If no directional input, reset X velocity.
             if (!gotDirInput)
             {
-               Vel = new Vector2(0, Vel.Y);
+                Vel = new Vector2(0, Vel.Y);
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            anim.UpdateTime(gameTime);
+            HandleInputs();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            //spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            spriteBatch.Draw(anim.GetSheet(), GetBoundingBox(), anim.GetWindow(), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
         }
 
         public override Rectangle GetBoundingBox()
         {
-            return new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
+            return new Rectangle((int)Pos.X, (int)Pos.Y, anim.GetWidth(), anim.GetHeight());//new Rectangle((int)Pos.X, (int)Pos.Y, tex.Width, tex.Height);
         }
 
         public override void OnCollision(GameObject other, Direction dir)

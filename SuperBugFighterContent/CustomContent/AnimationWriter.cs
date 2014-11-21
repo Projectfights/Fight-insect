@@ -31,7 +31,7 @@ namespace CustomContent
 
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
-            return "Heist.Utils.AnimatedTexture2DReader, Heist," +
+            return "Bug.Utils.AnimatedTexture2DReader, SuperBugFighter," +
                " Version=1.0.0.0, Culture=neutral";
         }
     }

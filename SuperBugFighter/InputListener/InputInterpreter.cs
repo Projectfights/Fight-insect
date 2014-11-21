@@ -92,6 +92,27 @@ namespace InputListener
             pressedKeys.UnionWith(newKeys);
         }
 
+        private void PlayerControllerEvents(List<InputType> events, GamePadState c)
+        {
+            /*
+            if (c.IsButtonDown(Buttons.A))
+            {
+                events.Add(InputType.A_Up);
+            }
+            if (c.IsButtonDown(Buttons.))
+            {
+
+            }
+            */
+        }
+
+        private void ControllerEvents(List<InputType> events)
+        {
+            var p1 = GamePad.GetState(PlayerIndex.One);
+            var p2 = GamePad.GetState(PlayerIndex.Two);
+
+        }
+
         public List<InputType> Process()
         {
             List<InputType> res = new List<InputType>();

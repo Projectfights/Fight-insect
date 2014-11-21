@@ -1,6 +1,7 @@
 ﻿using Bug.GameObjects;
 using Bug.Screens.Abstract;
 using Bug.Systems;
+using Bug.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,9 +23,18 @@ namespace Bug.Screens.Concrete
         {
             p = new Physics();
             bg = new Background(Load<Texture2D>("Image/stage"));
+            
+            var sheet = Load<Texture2D>("Image/waspIdleSheet");
+            var anim = Load<AnimatedTexture2D>("Image/waspIdle");
+            anim.SetSheet(sheet);
+            var anim2 = Load<AnimatedTexture2D>("Image/waspIdle");
+            anim.SetSheet(sheet);
 
-            p1 = new Fighter(new Vector2(50, 150), Load<Texture2D>("Image/beetle"), false, .5f, Keys.A, Keys.D, Keys.W);
-            p2 = new Fighter(new Vector2(440, 150), Load<Texture2D>("Image/beetle2"), true, .5f, Keys.Left, Keys.Right, Keys.Up);
+            var in1 = new FighterInput(PlayerIndex.One);
+            var in2 = new FighterInput(PlayerIndex.Two);
+
+            p1 = new Fighter(new Vector2(50, 150), anim, in1, false, .5f);
+            p2 = new Fighter(new Vector2(440, 150), anim2, in2, true, .5f);
             h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), new Vector2(10, 10));
             h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), new Vector2(widthScreen - 110, 10));
         }
