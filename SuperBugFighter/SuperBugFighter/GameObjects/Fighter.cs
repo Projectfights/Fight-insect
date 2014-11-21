@@ -35,29 +35,29 @@ namespace Bug.GameObjects
             Health = 1;
         }
 
-        public override void Update(GameTime gameTime)
+        private void HandleInputs()
         {
-            anim.UpdateTime(gameTime);
-
             double left = input.left();
             double right = input.right();
             bool gotDirInput = false;
 
             //Move left if left is pressed
-            if (left > 0) {
-                Vel = new Vector2((float) (-speed * left), Vel.Y);
+            if (left > 0)
+            {
+                Vel = new Vector2((float)(-speed * left), Vel.Y);
                 gotDirInput = true;
                 flip = true;
             }
             //Move right if right is pressed
             else if (right > 0)
             {
-                Vel = new Vector2((float) (speed * right), Vel.Y);
+                Vel = new Vector2((float)(speed * right), Vel.Y);
                 gotDirInput = true;
                 flip = false;
             }
             //Jump if up is pressed
-            else if (input.up() == 1 && Vel.Y == 0)
+
+            if (input.up() == 1 && Vel.Y == 0)
             {
                 Vel = new Vector2(Vel.X, -speed * 5);
             }
@@ -65,8 +65,14 @@ namespace Bug.GameObjects
             //If no directional input, reset X velocity.
             if (!gotDirInput)
             {
-               Vel = new Vector2(0, Vel.Y);
+                Vel = new Vector2(0, Vel.Y);
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            anim.UpdateTime(gameTime);
+            HandleInputs();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
