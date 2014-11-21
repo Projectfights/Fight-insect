@@ -68,7 +68,7 @@ namespace Bug.GameObjects
         {
             if (GamePad.GetState(player).IsConnected)
             {
-                if (GamePad.GetState(player).IsButtonDown(Buttons.DPadLeft))
+                if (GamePad.GetState(player).IsButtonDown(Buttons.DPadRight))
                 {
                     return 1;
                 }
