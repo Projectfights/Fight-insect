@@ -33,6 +33,7 @@ namespace Bug.Utils
 
         public void UpdateTime(GameTime gameTime)
         {
+
         }
 
         public Texture2D GetSheet()

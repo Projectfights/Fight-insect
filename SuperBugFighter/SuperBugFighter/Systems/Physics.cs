@@ -52,12 +52,28 @@ namespace Bug.Systems
                 {
                     if (left < right)
                     {
+                        //Send collision message
                         o1.OnCollision(o2, top < left ? Direction.S : Direction.E);
                         if (o2 is Dynamic)
                         {
+                            //Send collision message
                             Dynamic do2 = (Dynamic)o2;
                             do2.OnCollision(o1, top < left ? Direction.N : Direction.W);
+
+                            //Resolve collision with another Dynamic
+                            if (top < left)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top / 2));
+                                do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X - left / 2, o1.Pos.Y));
+                                do2.SetPos(new Vector2(do2.Pos.X + left / 2, do2.Pos.Y));
+                            }
                         }
+
+
                     }
                     else
                     {
@@ -66,7 +82,20 @@ namespace Bug.Systems
                         {
                             Dynamic do2 = (Dynamic)o2;
                             do2.OnCollision(o1, top < right ? Direction.N : Direction.E);
+                            
+                            if (top < right)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top / 2));
+                                do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X + right / 2, o1.Pos.Y));
+                                do2.SetPos(new Vector2(do2.Pos.X - right / 2, do2.Pos.Y));
+                            }
                         }
+
+                        
                     }
                 }
                 else
@@ -78,6 +107,17 @@ namespace Bug.Systems
                         {
                             Dynamic do2 = (Dynamic)o2;
                             do2.OnCollision(o1, bot < left ? Direction.S : Direction.W);
+
+                            if (bot < left)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot / 2));
+                                do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X - left / 2, o1.Pos.Y));
+                                do2.SetPos(new Vector2(do2.Pos.X + left / 2, do2.Pos.Y));
+                            }
                         }
                     }
                     else
@@ -87,9 +127,22 @@ namespace Bug.Systems
                         {
                             Dynamic do2 = (Dynamic)o2;
                             do2.OnCollision(o1, bot < right ? Direction.S : Direction.E);
+
+                            if (bot < right)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot / 2));
+                                do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X + right / 2, o1.Pos.Y));
+                                do2.SetPos(new Vector2(do2.Pos.X - right / 2, do2.Pos.Y));
+                            }
                         }
                     }
                 }
+
+                
 
                /*
                 if (left > 0 && left < (bb1.Width + bb2.Width) && top > 0 && top < (bb1.Height + bb2.Height))

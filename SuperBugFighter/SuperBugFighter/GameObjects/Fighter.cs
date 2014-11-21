@@ -19,7 +19,7 @@ namespace Bug.GameObjects
         //Horizontal move speed
         private float speed;
 
-        //Keys to use for left and right
+        //Keys to use for leC:\Users\Henry\Source\Repos\Fight-insect\SuperBugFighter\SuperBugFighter\GameObjects\Fighter.csft and right
         private Keys left, right, up;
 
         //Figher health
@@ -89,21 +89,21 @@ namespace Bug.GameObjects
                 {
                     case Direction.N:
                         Vel = new Vector2(Vel.X, Math.Min(Vel.Y,0));
-                        ResetPosY();
+                       // ResetPosY();
                         //Decrease health if hit from above
                         Health -= 1.0 / 500.0;
                         break;
                     case Direction.E:
                         Vel = new Vector2(Math.Max(Vel.X, 0), Vel.Y);
-                        ResetPosX();
+                        //ResetPosX();
                         break;
                     case Direction.S:
                         Vel = new Vector2(Vel.X, Math.Max(Vel.Y, 0));
-                        ResetPosY();
+                       // ResetPosY();
                         break;
                     case Direction.W:
                         Vel = new Vector2(Math.Min(Vel.X, 0), Vel.Y);
-                        ResetPosX();
+                        //ResetPosX();
                         break;
                 }
             }
