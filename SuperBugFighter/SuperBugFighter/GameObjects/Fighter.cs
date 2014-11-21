@@ -88,7 +88,7 @@ namespace Bug.GameObjects
                 switch(dir)
                 {
                     case Direction.N:
-                        Vel = new Vector2(Vel.X, Math.Min(Vel.Y,0));
+                        Vel = new Vector2(Vel.X, Math.Max(Vel.Y,0));
                        // ResetPosY();
                         //Decrease health if hit from above
                         Health -= 1.0 / 500.0;
@@ -98,7 +98,7 @@ namespace Bug.GameObjects
                         //ResetPosX();
                         break;
                     case Direction.S:
-                        Vel = new Vector2(Vel.X, Math.Max(Vel.Y, 0));
+                        Vel = new Vector2(Vel.X, Math.Min(Vel.Y, 0));
                        // ResetPosY();
                         break;
                     case Direction.W:
