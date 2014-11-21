@@ -14,7 +14,6 @@ namespace Bug.GameObjects
     class Fighter : Dynamic
     {
         //Fighter texture
-        private Texture2D tex;
         private AnimatedTexture2D anim;
 
         private bool flip;
@@ -22,21 +21,17 @@ namespace Bug.GameObjects
         //Horizontal move speed
         private float speed;
 
-        //Keys to use for left and right
-        private Keys left, right, up;
+        private FighterInput input;
 
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, Texture2D tex_, AnimatedTexture2D anim_, bool flip_, float speed_, Keys left_, Keys right_, Keys up_) : base(pos)
+        public Fighter(Vector2 pos, AnimatedTexture2D anim_, FighterInput input_, bool flip_, float speed_) : base(pos)
         {
-            tex = tex_;
             anim = anim_;
+            input = input_;
             flip = flip_;
             speed = speed_;
-            left = left_;
-            right = right_;
-            up = up_;
             Health = 1;
         }
 
@@ -44,30 +39,27 @@ namespace Bug.GameObjects
         {
             anim.UpdateTime(gameTime);
 
-            //Iterate over pressed keys to check if the left/right keys for this figher are pressed
-            Keys[] newKeys = Keyboard.GetState().GetPressedKeys();
+            double left = input.left();
+            double right = input.right();
             bool gotDirInput = false;
-            foreach(Keys k in newKeys)
+
+            //Move left if left is pressed
+            if (left > 0) {
+                Vel = new Vector2((float) (-speed * left), Vel.Y);
+                gotDirInput = true;
+                flip = true;
+            }
+            //Move right if right is pressed
+            else if (right > 0)
             {
-                //Move left if left is pressed
-                if (k == left)
-                {
-                    Vel = new Vector2(-speed, Vel.Y);
-                    gotDirInput = true;
-                    flip = true;
-                }
-                //Move right if right is pressed
-                else if (k == right)
-                {
-                    Vel = new Vector2(speed, Vel.Y);
-                    gotDirInput = true;
-                    flip = false;
-                }
-                //Jump if up is pressed
-                else if (k == up && Vel.Y == 0)
-                {
-                    Vel = new Vector2(Vel.X, -speed * 5);
-                }
+                Vel = new Vector2((float) (speed * right), Vel.Y);
+                gotDirInput = true;
+                flip = false;
+            }
+            //Jump if up is pressed
+            else if (input.up() == 1 && Vel.Y == 0)
+            {
+                Vel = new Vector2(Vel.X, -speed * 5);
             }
 
             //If no directional input, reset X velocity.
