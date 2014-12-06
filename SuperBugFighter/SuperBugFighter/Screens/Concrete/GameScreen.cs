@@ -37,7 +37,7 @@ namespace Bug.Screens.Concrete
                     hitFrames.Add(new HitBox.HitBoxFrame(waspPunch.GetNumFrames() / waspPunch.GetFps(), new Rectangle(waspPunch.GetWidth(), 50, 10, 10), 10));
                     var punch = new HitBox(p1, hitFrames); //Gets null for p1
 
-                    float speed = .5f;
+                    float speed = .75f;
                     double health = 100;
                     double power = 10;
 
@@ -49,9 +49,9 @@ namespace Bug.Screens.Concrete
                     hitFrames2.Add(new HitBox.HitBoxFrame(beetlePunch.GetNumFrames(), new Rectangle(beetlePunch.GetWidth(), 50, 10, 10), 10));
                     var punch2 = new HitBox(p2, hitFrames2); //Gets null for p2, fix is below
                     
-                    float speed2 = .5f;
-                    double health2 = 100;
-                    double power2 = 10;
+                    float speed2 = .25f;
+                    double health2 = 150;
+                    double power2 = 15;
 
                     return new Fighter(pos, overlay, beetleIdle, beetlePunch, input, punch2, flip, speed2, health2, power2);
             }
