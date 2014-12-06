@@ -45,25 +45,28 @@ namespace Bug.GameObjects
             double right = input.right();
             bool gotDirInput = false;
 
-            //Move left if left is pressed
-            if (left > 0)
+            if (!punch.IsActive())
             {
-                Vel = new Vector2((float)(-speed * left), Vel.Y);
-                gotDirInput = true;
-                flip = true;
-            }
-            //Move right if right is pressed
-            else if (right > 0)
-            {
-                Vel = new Vector2((float)(speed * right), Vel.Y);
-                gotDirInput = true;
-                flip = false;
-            }
-            //Jump if up is pressed
+                //Move left if left is pressed
+                if (left > 0)
+                {
+                    Vel = new Vector2((float)(-speed * left), Vel.Y);
+                    gotDirInput = true;
+                    flip = true;
+                }
+                //Move right if right is pressed
+                else if (right > 0)
+                {
+                    Vel = new Vector2((float)(speed * right), Vel.Y);
+                    gotDirInput = true;
+                    flip = false;
+                }
+                //Jump if up is pressed
 
-            if (input.up() == 1 && Vel.Y == 0)
-            {
-                Vel = new Vector2(Vel.X, -speed * 5);
+                if (input.up() == 1 && Vel.Y == 0)
+                {
+                    Vel = new Vector2(Vel.X, -speed * 5);
+                }
             }
 
             //If no directional input, reset X velocity.
