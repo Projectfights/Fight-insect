@@ -35,9 +35,9 @@ namespace Bug.Screens.Concrete
             var in2 = new FighterInput(PlayerIndex.Two);
 
             List<HitBox.HitBoxFrame> hitFrames = new List<HitBox.HitBoxFrame>();
-            hitFrames.Add(new HitBox.HitBoxFrame(100, new Rectangle(0, 0, 1000, 10), 10));
+            hitFrames.Add(new HitBox.HitBoxFrame(100, new Rectangle(anim.GetWidth(), 50, 10, 10), 10));
             punch1 = new HitBox(p1, hitFrames); //Gets null for p1
-            punch2 = new HitBox(p2, hitFrames); //Gets null for p2, fix below
+            punch2 = new HitBox(p2, hitFrames); //Gets null for p2, fix is below
 
             p1 = new Fighter(new Vector2(50, 150), anim, in1, punch1, false, .5f);
             p2 = new Fighter(new Vector2(440, 150), anim2, in2, punch2, true, .5f);
