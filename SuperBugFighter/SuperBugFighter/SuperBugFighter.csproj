@@ -35,7 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Display\SizedButton.cs" />
+    <Compile Include="Display\CharacterButton.cs" />
     <Compile Include="GameObjects\HitBox.cs" />
     <Compile Include="GameObjects\FighterInput.cs" />
     <Compile Include="GameObjects\HealthBar.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Utils\AnimatedTexture2D.cs" />
     <Compile Include="Utils\AnimatedTexture2DReader.cs" />
+    <Compile Include="Utils\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL">
