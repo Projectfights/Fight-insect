@@ -49,6 +49,11 @@ namespace Bug.Display
                 return pressed ? down : up;
             }
         }
-        
+
+
+        internal bool IsPressed()
+        {
+            return pressed;
+        }
     }
 }

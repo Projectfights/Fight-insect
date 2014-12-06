@@ -4,6 +4,7 @@ using Bug.Screens.Abstract;
 using Bug.Systems;
 using Bug.Utils;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -48,7 +49,7 @@ namespace Bug.Screens.Concrete
                     var waspRecoil = LoadAnim("waspRecoil");
                     List<HitBox.HitBoxFrame> hitFrames = new List<HitBox.HitBoxFrame>();
                     hitFrames.Add(new HitBox.HitBoxFrame(waspPunch.GetNumFrames() / waspPunch.GetFps(), new Rectangle(waspPunch.GetWidth(), 50, 10, 10), power));
-                    var punch = new HitBox(p1, hitFrames); //Gets null for p1
+                    var punch = new HitBox(p1, Load<SoundEffect>("Audio/waspPunch"), hitFrames); //Gets null for p1
 
 
                     return new Fighter(pos, overlay, waspIdle, waspPunch, waspRecoil, input, punch, flip, speed, health, power);
@@ -62,7 +63,7 @@ namespace Bug.Screens.Concrete
                     var beetleRecoil = LoadAnim("beetleRecoil");
                     List<HitBox.HitBoxFrame> hitFrames2 = new List<HitBox.HitBoxFrame>();
                     hitFrames2.Add(new HitBox.HitBoxFrame(beetlePunch.GetNumFrames(), new Rectangle(beetlePunch.GetWidth(), 50, 10, 10), power2));
-                    var punch2 = new HitBox(p2, hitFrames2); //Gets null for p2, fix is below
+                    var punch2 = new HitBox(p2, Load<SoundEffect>("Audio/beetlePunch"), hitFrames2); //Gets null for p2, fix is below
 
                     return new Fighter(pos, overlay, beetleIdle, beetlePunch, beetleRecoil, input, punch2, flip, speed2, health2, power2);
             }
@@ -72,6 +73,8 @@ namespace Bug.Screens.Concrete
 
         public GameScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
+            Audio.GetInstance().PlaySong(Load<SoundEffect>("Audio/battle"));
+
             p = new Physics();
             bg = new Background(Load<Texture2D>("Image/stage"));
 

@@ -19,12 +19,12 @@ namespace Bug.Screens.Concrete
     {
         public MainMenuScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
-            SoundEffect song = Load<SoundEffect>("Audio/Menu");
- 
+            Audio.GetInstance().PlaySong(Load<SoundEffect>("Audio/Menu"));
+/* 
             SoundEffectInstance soundEffectInstance = song.CreateInstance();
             soundEffectInstance.IsLooped = true;
             soundEffectInstance.Play();
-
+*/
             Settings.in1 = new FighterInput(PlayerIndex.One);
             Settings.in2 = new FighterInput(PlayerIndex.Two);
 
@@ -48,7 +48,7 @@ namespace Bug.Screens.Concrete
             //Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             //Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
 
-            newGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<SelectScreen1>(); };
+            newGame.select += delegate() { ChangeScreen<SelectScreen1>(); };
             //loadGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<LoadGameScreen>(); };
             //options.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<OptionScreen>(); };
 

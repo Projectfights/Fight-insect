@@ -22,7 +22,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -82,16 +82,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\Abstract\IScreenMaster.cs" />
-    <Compile Include="Screens\Abstract\MenuScreen.cs" />
+    <Compile Include="Screens\Abstract\menuScreen.cs" />
     <Compile Include="Screens\Abstract\Screen.cs" />
     <Compile Include="Screens\Concrete\GameScreen.cs" />
     <Compile Include="Screens\Concrete\LoadGameScreen.cs" />
-    <Compile Include="Screens\Concrete\MainMenuScreen.cs" />
+    <Compile Include="Screens\Concrete\MainmenuScreen.cs" />
     <Compile Include="Screens\Concrete\OptionScreen.cs" />
     <Compile Include="Screens\Concrete\SelectScreen.cs" />
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Utils\AnimatedTexture2D.cs" />
     <Compile Include="Utils\AnimatedTexture2DReader.cs" />
+    <Compile Include="Utils\Audio.cs" />
     <Compile Include="Utils\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,81 +124,96 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="Content\Anim\beetleIdle.xnb">
+    <Content Include="Content\Anim\beetleIdle.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\beetleIdleSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\beetleIdleSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\beetlePunch.xnb">
+    </Content>
+    <Content Include="Content\Anim\beetlePunch.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\beetlePunchSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\beetlePunchSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\beetleRecoil.xnb">
+    </Content>
+    <Content Include="Content\Anim\beetleRecoil.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\beetleRecoilSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\beetleRecoilSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspIdle.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspIdle.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspIdleSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspIdleSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspPunch.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspPunch.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspPunchSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspPunchSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspRecoil.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspRecoil.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Anim\waspRecoilSheet.xnb">
+    </Content>
+    <Content Include="Content\Anim\waspRecoilSheet.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Audio\Menu.xnb">
+    </Content>
+    <Content Include="Content\Font\text.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Font\text.xnb">
+    </Content>
+    <Content Include="Content\Image\blue.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\blue.xnb">
+    </Content>
+    <Content Include="Content\Image\buttonDown.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\buttonDown.xnb">
+    </Content>
+    <Content Include="Content\Image\buttonUp.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\buttonUp.xnb">
+    </Content>
+    <Content Include="Content\Image\draw.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\draw.xnb">
+    </Content>
+    <Content Include="Content\Image\mainBg.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\mainBg.xnb">
+    </Content>
+    <Content Include="Content\Image\p1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\p1.xnb">
+    </Content>
+    <Content Include="Content\Image\p1win.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\p1win.xnb">
+    </Content>
+    <Content Include="Content\Image\p2.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\p2.xnb">
+    </Content>
+    <Content Include="Content\Image\p2win.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\p2win.xnb">
+    </Content>
+    <Content Include="Content\Image\red.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\red.xnb">
+    </Content>
+    <Content Include="Content\Image\stage.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Image\stage.xnb">
+    </Content>
+    <Content Include="Content\Audio\battle.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="Content\Audio\beetlePunch.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\buttonClick.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\buttonHover.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\menu.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\waspPunch.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="SuperBugFighter_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +238,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

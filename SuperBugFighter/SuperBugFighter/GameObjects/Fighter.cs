@@ -170,6 +170,7 @@ namespace Bug.GameObjects
                 HitBox h = (HitBox)other;
                 if (h.parent != this)
                 {
+                    Audio.GetInstance().Play(h.GetNoise());
                     this.Health -= h.GetDamage();
                     invulnTime = 700;
                     recoilAnim.Reset();

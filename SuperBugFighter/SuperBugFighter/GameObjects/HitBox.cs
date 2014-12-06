@@ -6,21 +6,24 @@ using Bug;
 using Bug.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Bug.GameObjects
 {
     class HitBox : GameObject
     {
         public Fighter parent;
+        private SoundEffect noise;
         private double elapsedTime;
         private int index;
         private bool active;
         private List<HitBoxFrame> frames;        
 
-        public HitBox(Fighter parent, List<HitBoxFrame> frames)
+        public HitBox(Fighter parent, SoundEffect noise, List<HitBoxFrame> frames)
             : base()
         {
             this.parent = parent;
+            this.noise = noise;
             this.elapsedTime = 0;
             this.index = 0;
             active = false;
@@ -84,6 +87,11 @@ namespace Bug.GameObjects
         public double GetDamage()
         {
             return frames[index].damage;
+        }
+
+        public SoundEffect GetNoise()
+        {
+            return noise;
         }
 
         public struct HitBoxFrame

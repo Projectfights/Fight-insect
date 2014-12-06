@@ -32,6 +32,11 @@ namespace Bug
             widthScreen = 640;
             heightScreen = 400;
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = widthScreen;
+            graphics.PreferredBackBufferHeight = heightScreen;
+            graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
         }
@@ -45,10 +50,6 @@ namespace Bug
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = widthScreen;
-            graphics.PreferredBackBufferHeight = heightScreen;
-            graphics.ApplyChanges();
 
             Change<MainMenuScreen>();
 

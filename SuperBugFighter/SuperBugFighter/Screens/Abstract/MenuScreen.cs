@@ -2,6 +2,7 @@
 using Bug.GameObjects;
 using Bug.Utils;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -20,6 +21,8 @@ namespace Bug.Screens.Abstract
         protected int current;
         protected bool buttonPressed;
         private long timeout;
+        private bool hovering;
+        private bool startHovering;
 
         public MenuScreen(int widthScreen, int heightScreen, IScreenMaster master)
             : base(widthScreen, heightScreen, master)
@@ -28,6 +31,8 @@ namespace Bug.Screens.Abstract
             current = -1;
             buttonPressed = false;
             timeout = 0;
+            hovering = false;
+            hovering = true;
         }
 
         private void UpdateButton(Button button, bool sel)
@@ -39,18 +44,32 @@ namespace Bug.Screens.Abstract
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
                         button.SetPressed(true);
-                        current = -1;
                     }
                     else
                     {
+                        if (button.IsPressed())
+                        {
+                            Audio.GetInstance().Play(Load<SoundEffect>("Audio/buttonClick"));
+                        }
                         button.SetPressed(false);
                     }
+
+                    if (startHovering)
+                    {
+                        Audio.GetInstance().Play(Load<SoundEffect>("Audio/buttonHover"));
+                        startHovering = false;
+                    }
+
+                    hovering = true;
                 }
             }
             else
             {
+                startHovering = true;
+
                 if (sel && buttonPressed && !input.select())
                 {
+                    Audio.GetInstance().Play(Load<SoundEffect>("Audio/buttonClick"));
                     button.SetPressed(false);
                 }
                 else if (sel)
@@ -75,6 +94,7 @@ namespace Bug.Screens.Abstract
             {
                 if (input.up() > .999)
                 {
+                    Audio.GetInstance().Play(Load<SoundEffect>("Audio/buttonHover"));
                     buttonPressed = false;
 
                     if (current == -1)
@@ -90,6 +110,7 @@ namespace Bug.Screens.Abstract
                 }
                 else if (input.down() > .999)
                 {
+                    Audio.GetInstance().Play(Load<SoundEffect>("Audio/buttonHover"));
                     buttonPressed = false;
 
                     if (current == -1)
@@ -108,12 +129,15 @@ namespace Bug.Screens.Abstract
             {
                 timeout -= gameTime.ElapsedGameTime.Milliseconds;
             }
-            
+
+            hovering = false;
+
             for(int i = 0; i < buttons.Count; i++)
             {
                 UpdateButton(buttons[i], i == current);
             }
 
+            startHovering = !hovering;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch batch)
