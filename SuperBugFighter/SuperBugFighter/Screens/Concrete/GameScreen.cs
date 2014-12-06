@@ -18,6 +18,7 @@ namespace Bug.Screens.Concrete
         private Background bg;
         private Fighter p1, p2;
         private HealthBar h1, h2;
+        private HitBox punch1, punch2;
 
         public GameScreen(int widthScreen, int heightScreen, IScreenMaster master) : base(widthScreen, heightScreen, master)
         {
@@ -33,15 +34,24 @@ namespace Bug.Screens.Concrete
             var in1 = new FighterInput(PlayerIndex.One);
             var in2 = new FighterInput(PlayerIndex.Two);
 
-            p1 = new Fighter(new Vector2(50, 150), anim, in1, false, .5f);
-            p2 = new Fighter(new Vector2(440, 150), anim2, in2, true, .5f);
+            List<HitBox.HitBoxFrame> hitFrames = new List<HitBox.HitBoxFrame>();
+            hitFrames.Add(new HitBox.HitBoxFrame(100, new Rectangle(0, 0, 1000, 10), 10));
+            punch1 = new HitBox(p1, hitFrames); //Gets null for p1
+            punch2 = new HitBox(p2, hitFrames); //Gets null for p2, fix below
+
+            p1 = new Fighter(new Vector2(50, 150), anim, in1, punch1, false, .5f);
+            p2 = new Fighter(new Vector2(440, 150), anim2, in2, punch2, true, .5f);
+
+            punch1.parent = p1;
+            punch2.parent = p2;
+
             h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), new Vector2(10, 10));
             h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), new Vector2(widthScreen - 110, 10));
         }
 
         public override void Update(GameTime gameTime)
         {
-            p.Update(gameTime, new List<Dynamic>() { p1, p2 }, new List<GameObject>() { p1, p2 });
+            p.Update(gameTime, new List<Dynamic>() { p1, p2 }, new List<GameObject>() { p1, p2, punch1, punch2 });
             p1.Update(gameTime);
             p2.Update(gameTime);
             if (p1.Health <= 0 || p2.Health <= 0)

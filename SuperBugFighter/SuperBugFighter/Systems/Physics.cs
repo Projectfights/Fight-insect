@@ -63,16 +63,18 @@ namespace Bug.Systems
                             
                         }
 
-                        //Resolve collision with another Dynamic
-                        if (top < left)
+                        if (!(o2 is HitBox))
                         {
-                            o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top));
-                            //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2.0f));
-                        }
-                        else
-                        {
-                            o1.SetPos(new Vector2(o1.Pos.X - left, o1.Pos.Y));
-                            //do2.SetPos(new Vector2(do2.Pos.X + left / 2.0f, do2.Pos.Y));
+                            if (top < left)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top));
+                                //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2.0f));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X - left, o1.Pos.Y));
+                                //do2.SetPos(new Vector2(do2.Pos.X + left / 2.0f, do2.Pos.Y));
+                            }
                         }
 
 
@@ -88,17 +90,19 @@ namespace Bug.Systems
                            
                         }
 
-                        if (top < right)
+                        if (!(o2 is HitBox))
                         {
-                            o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top));
-                            //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2.0f));
+                            if (top < right)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y - top));
+                                //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y + top / 2.0f));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X + right, o1.Pos.Y));
+                                //do2.SetPos(new Vector2(do2.Pos.X - right / 2.0f, do2.Pos.Y));
+                            }
                         }
-                        else
-                        {
-                            o1.SetPos(new Vector2(o1.Pos.X + right, o1.Pos.Y));
-                            //do2.SetPos(new Vector2(do2.Pos.X - right / 2.0f, do2.Pos.Y));
-                        }
-
                         
                     }
                 }
@@ -115,15 +119,18 @@ namespace Bug.Systems
                             
                         }
 
-                        if (bot < left)
+                        if (!(o2 is HitBox))
                         {
-                            o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot));
-                            //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2.0f));
-                        }
-                        else
-                        {
-                            o1.SetPos(new Vector2(o1.Pos.X - left, o1.Pos.Y));
-                            //do2.SetPos(new Vector2(do2.Pos.X + left / 2.0f, do2.Pos.Y));
+                            if (bot < left)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot));
+                                //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2.0f));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X - left, o1.Pos.Y));
+                                //do2.SetPos(new Vector2(do2.Pos.X + left / 2.0f, do2.Pos.Y));
+                            }
                         }
                     }
                     else
@@ -136,16 +143,19 @@ namespace Bug.Systems
 
                             
                         }
+                        if (!(o2 is HitBox))
+                        {
 
-                        if (bot < right)
-                        {
-                            o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot));
-                            //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2.0f));
-                        }
-                        else
-                        {
-                            o1.SetPos(new Vector2(o1.Pos.X + right, o1.Pos.Y));
-                            //do2.SetPos(new Vector2(do2.Pos.X - right / 2.0f, do2.Pos.Y));
+                            if (bot < right)
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X, o1.Pos.Y + bot));
+                                //do2.SetPos(new Vector2(do2.Pos.X, do2.Pos.Y - bot / 2.0f));
+                            }
+                            else
+                            {
+                                o1.SetPos(new Vector2(o1.Pos.X + right, o1.Pos.Y));
+                                //do2.SetPos(new Vector2(do2.Pos.X - right / 2.0f, do2.Pos.Y));
+                            }
                         }
                     }
                 }

@@ -16,23 +16,27 @@ namespace Bug.GameObjects
         //Fighter texture
         private AnimatedTexture2D anim;
 
-        private bool flip;
+        public bool flip{get; private set;}
 
         //Horizontal move speed
         private float speed;
-
+        private float invulnTime;
         private FighterInput input;
+
+        private HitBox punch;
 
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, AnimatedTexture2D anim_, FighterInput input_, bool flip_, float speed_) : base(pos)
+        public Fighter(Vector2 pos, AnimatedTexture2D anim_, FighterInput input_, HitBox punch_, bool flip_, float speed_) : base(pos)
         {
             anim = anim_;
             input = input_;
             flip = flip_;
             speed = speed_;
-            Health = 1;
+            Health = 100;
+            punch = punch_;
+            invulnTime = 0;
         }
 
         private void HandleInputs()
@@ -67,11 +71,22 @@ namespace Bug.GameObjects
             {
                 Vel = new Vector2(0, Vel.Y);
             }
+
+            //Punch if punch key is pressed
+            if (input.punch())
+            {
+                punch.Trigger();
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (invulnTime > 0)
+            {
+                invulnTime -= gameTime.ElapsedGameTime.Milliseconds;
+            }
             anim.UpdateTime(gameTime);
+            punch.Update(gameTime);
             HandleInputs();
         }
 
@@ -88,6 +103,15 @@ namespace Bug.GameObjects
 
         public override void OnCollision(GameObject other, Direction dir)
         {
+            if (other is HitBox && invulnTime <= 0)
+            {
+                HitBox h = (HitBox)other;
+                if (h.parent != this)
+                {
+                    this.Health -= h.GetDamage();
+                    invulnTime = 1000;
+                }
+            }
             if (other is Fighter)
             {
                 switch(dir)

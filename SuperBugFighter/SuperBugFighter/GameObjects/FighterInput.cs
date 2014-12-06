@@ -35,6 +35,14 @@ namespace Bug.GameObjects
             }
         }
 
+        private Keys punchKey
+        {
+            get
+            {
+                return player == PlayerIndex.One ? Keys.E : Keys.M;
+            }
+        }
+
         public FighterInput(PlayerIndex player_)
         {
             player = player_;
@@ -107,6 +115,23 @@ namespace Bug.GameObjects
                 return 1;
             }
             return 0;
+        }
+
+        public bool punch()
+        {
+            if (GamePad.GetState(player).IsConnected)
+            {
+                if (GamePad.GetState(player).IsButtonDown(Buttons.B))
+                {
+                    return true;
+                }
+            }
+            if (Keyboard.GetState().IsKeyDown(punchKey))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
