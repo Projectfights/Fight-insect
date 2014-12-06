@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <sheet>Image/beetlePunchSheet.png</sheet>
-  <fps>20</fps>
-  <width>191</width>
+  <fps>40</fps>
+  <width>177</width>
   <height>170</height>
   <row>1</row>
   <col>5</col>

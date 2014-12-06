@@ -2,8 +2,8 @@
 <XnaContent>
   <sheet>Image/waspIdleSheet.png</sheet>
   <fps>10</fps>
-  <width>180</width>
-  <height>175</height>
+  <width>144</width>
+  <height>158</height>
   <row>1</row>
   <col>4</col>
 </XnaContent>
