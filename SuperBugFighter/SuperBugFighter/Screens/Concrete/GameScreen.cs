@@ -29,8 +29,8 @@ namespace Bug.Screens.Concrete
 
         private AnimatedTexture2D LoadAnim(String name)
         {
-            var sheet = Load<Texture2D>("Image/" + name + "Sheet");
-            var anim = Load<AnimatedTexture2D>("Image/" + name);
+            var sheet = Load<Texture2D>("Anim/" + name + "Sheet");
+            var anim = Load<AnimatedTexture2D>("Anim/" + name);
             anim.SetSheet(sheet);
             return anim;
         }
@@ -45,24 +45,26 @@ namespace Bug.Screens.Concrete
 
                     var waspIdle = LoadAnim("waspIdle");
                     var waspPunch = LoadAnim("waspPunch");
+                    var waspRecoil = LoadAnim("waspRecoil");
                     List<HitBox.HitBoxFrame> hitFrames = new List<HitBox.HitBoxFrame>();
                     hitFrames.Add(new HitBox.HitBoxFrame(waspPunch.GetNumFrames() / waspPunch.GetFps(), new Rectangle(waspPunch.GetWidth(), 50, 10, 10), power));
                     var punch = new HitBox(p1, hitFrames); //Gets null for p1
 
 
-                    return new Fighter(pos, overlay, waspIdle, waspPunch, input, punch, flip, speed, health, power);
+                    return new Fighter(pos, overlay, waspIdle, waspPunch, waspRecoil, input, punch, flip, speed, health, power);
                 case ("beetle"):
                     float speed2 = .4f;
                     double health2 = 100;
-                    double power2 = 13;
+                    double power2 = 11;
 
                     var beetleIdle = LoadAnim("beetleIdle");
                     var beetlePunch = LoadAnim("beetlePunch");
+                    var beetleRecoil = LoadAnim("beetleRecoil");
                     List<HitBox.HitBoxFrame> hitFrames2 = new List<HitBox.HitBoxFrame>();
                     hitFrames2.Add(new HitBox.HitBoxFrame(beetlePunch.GetNumFrames(), new Rectangle(beetlePunch.GetWidth(), 50, 10, 10), power2));
                     var punch2 = new HitBox(p2, hitFrames2); //Gets null for p2, fix is below
 
-                    return new Fighter(pos, overlay, beetleIdle, beetlePunch, input, punch2, flip, speed2, health2, power2);
+                    return new Fighter(pos, overlay, beetleIdle, beetlePunch, beetleRecoil, input, punch2, flip, speed2, health2, power2);
             }
 
             return null;
@@ -75,11 +77,9 @@ namespace Bug.Screens.Concrete
 
             var pos1 = new Vector2(50, 150);
             var pos2 = new Vector2(440, 150);
-            var in1 = new FighterInput(PlayerIndex.One);
-            var in2 = new FighterInput(PlayerIndex.Two);
             
-            p1 = GetFighter(pos1, Load<Texture2D>("Image/p1"), in1, false, Settings.P1_FIGHTER);
-            p2 = GetFighter(pos2, Load<Texture2D>("Image/p2"), in2, true, Settings.P2_FIGHTER);
+            p1 = GetFighter(pos1, Load<Texture2D>("Image/p1"), Settings.in1, false, Settings.P1_FIGHTER);
+            p2 = GetFighter(pos2, Load<Texture2D>("Image/p2"), Settings.in2, true, Settings.P2_FIGHTER);
 
             h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), false, new Vector2(10, 10));
             h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), true, new Vector2(widthScreen - 110, 10));
@@ -101,7 +101,7 @@ namespace Bug.Screens.Concrete
                 if (p1.Health <= 0 && p2.Health <= 0)
                 {
                     // Draw
-                    tex = Load<Texture2D>("Image/blue");
+                    tex = Load<Texture2D>("Image/draw");
                 }
                 else if (p2.Health <= 0)
                 {

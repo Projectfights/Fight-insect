@@ -15,16 +15,16 @@ namespace Bug.GameObjects
     class Fighter : Dynamic
     {
         private Image overlay;
-        private bool punching;
+        private bool punching, gettingPunched;
 
         //Fighter texture
-        private AnimatedTexture2D idleAnim, punchAnim;
+        private AnimatedTexture2D idleAnim, punchAnim, recoilAnim;
 
         private AnimatedTexture2D anim
         {
             get
             {
-                return punching ? punchAnim : idleAnim;
+                return gettingPunched ? recoilAnim : (punching ? punchAnim : idleAnim);
             }
         }
 
@@ -46,11 +46,12 @@ namespace Bug.GameObjects
             return new Vector2((int)(Pos.X + anim.GetWidth() / 2 - 10), (int)(Pos.Y - 50));
         }
 
-        public Fighter(Vector2 pos, Texture2D overlay_, AnimatedTexture2D idleAnim_, AnimatedTexture2D punchAnim_, FighterInput input_, HitBox punch_, bool flip_, float speed_, double health_, double power_)
+        public Fighter(Vector2 pos, Texture2D overlay_, AnimatedTexture2D idleAnim_, AnimatedTexture2D punchAnim_, AnimatedTexture2D recoilAnim_, FighterInput input_, HitBox punch_, bool flip_, float speed_, double health_, double power_)
             : base(pos)
         {
             idleAnim = idleAnim_;
             punchAnim = punchAnim_;
+            recoilAnim = recoilAnim_;
 
             Vector2 ov = getOverlayPos();
             overlay = new Image((int) ov.X, (int) ov.Y, overlay_);
@@ -64,6 +65,7 @@ namespace Bug.GameObjects
             invulnTime = 0;
 
             punching = false;
+            gettingPunched = false;
             punch.parent = this;
         }
 
@@ -91,7 +93,7 @@ namespace Bug.GameObjects
                 }
                 //Jump if up is pressed
 
-                if (1 - input.up() < .001 && Vel.Y == 0)
+                if ((input.up() > .999 || input.select()) && Vel.Y == 0)
                 {
                     Vel = new Vector2(Vel.X, -speed * 5);
                 }
@@ -103,7 +105,12 @@ namespace Bug.GameObjects
                 Vel = new Vector2(0, Vel.Y);
             }
 
-            if(punching && punchAnim.Looped) 
+            if (gettingPunched && recoilAnim.Looped)
+            {
+                idleAnim.Reset();
+                gettingPunched = false;
+            }
+            else if(punching && punchAnim.Looped) 
             {
                 idleAnim.Reset();
                 punching = false;
@@ -164,9 +171,9 @@ namespace Bug.GameObjects
                 if (h.parent != this)
                 {
                     this.Health -= h.GetDamage();
-                    invulnTime = 1000;
-                    punching = true;
-                    anim.Reset();
+                    invulnTime = 700;
+                    recoilAnim.Reset();
+                    gettingPunched = true;
                 }
             }
             if (other is Fighter)

@@ -17,6 +17,8 @@ namespace Bug.Screens.Concrete
         public SelectScreen1(int width, int height, IScreenMaster master)
             : base(width, height, master)
         {
+            input = Settings.in1;
+
             Texture2D up = Load<Texture2D>("Image/buttonUp");
             Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
@@ -34,7 +36,6 @@ namespace Bug.Screens.Concrete
 
             back.select += delegate() { ChangeScreen<MainMenuScreen>(); };
 
-            buttons.Add(back);
 
 
             CharacterButton wasp = new CharacterButton(100, 100, LoadAnim("waspIdle"), up, down);
@@ -44,12 +45,13 @@ namespace Bug.Screens.Concrete
             CharacterButton beetle = new CharacterButton(180, 100, LoadAnim("beetleIdle"), up, down);
             beetle.select += delegate() { Settings.P1_FIGHTER = "beetle"; ChangeScreen<SelectScreen2>(); };
             buttons.Add(beetle);
+            buttons.Add(back);
         }
 
         private AnimatedTexture2D LoadAnim(String name)
         {
-            var sheet = Load<Texture2D>("Image/" + name + "Sheet");
-            var anim = Load<AnimatedTexture2D>("Image/" + name);
+            var sheet = Load<Texture2D>("Anim/" + name + "Sheet");
+            var anim = Load<AnimatedTexture2D>("Anim/" + name);
             anim.SetSheet(sheet);
             return anim;
         }
@@ -60,6 +62,8 @@ namespace Bug.Screens.Concrete
          public SelectScreen2(int width, int height, IScreenMaster master)
             : base(width, height, master)
         {
+            input = Settings.in2;
+
             Texture2D up = Load<Texture2D>("Image/buttonUp");
             Texture2D down = Load<Texture2D>("Image/buttonDown");
             SpriteFont font = Load<SpriteFont>("Font/text");
@@ -77,7 +81,6 @@ namespace Bug.Screens.Concrete
 
             back.select += delegate() { ChangeScreen<SelectScreen1>(); };
 
-            buttons.Add(back);
 
 
             CharacterButton wasp = new CharacterButton(100, 100, LoadAnim("waspIdle"), up, down);
@@ -87,12 +90,13 @@ namespace Bug.Screens.Concrete
             CharacterButton beetle = new CharacterButton(180, 100, LoadAnim("beetleIdle"), up, down);
             beetle.select += delegate() { Settings.P2_FIGHTER = "beetle"; ChangeScreen<GameScreen>(); };
             buttons.Add(beetle);
+            buttons.Add(back);
         }
 
         private AnimatedTexture2D LoadAnim(String name)
         {
-            var sheet = Load<Texture2D>("Image/" + name + "Sheet");
-            var anim = Load<AnimatedTexture2D>("Image/" + name);
+            var sheet = Load<Texture2D>("Anim/" + name + "Sheet");
+            var anim = Load<AnimatedTexture2D>("Anim/" + name);
             anim.SetSheet(sheet);
             return anim;
         }

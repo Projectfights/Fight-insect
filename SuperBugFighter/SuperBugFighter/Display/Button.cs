@@ -33,9 +33,9 @@ namespace Bug.Display
             batch.Draw(tex, new Rectangle(x, y, tex.Width, tex.Height), Color.White);
         }
 
-        public void SetPressed(bool pressed_)
+        public void SetPressed(bool pressed_, bool toggle = true)
         {
-            if (pressed && !pressed_ && select != null)
+            if (pressed && !pressed_ && select != null && toggle)
             {
                 select();
             }

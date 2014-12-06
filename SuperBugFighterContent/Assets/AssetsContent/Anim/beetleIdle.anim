@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <sheet>Anim/beetleIdleSheet.png</sheet>
+  <fps>10</fps>
+  <width>150</width>
+  <height>170</height>
+  <row>1</row>
+  <col>3</col>
+</XnaContent>

@@ -48,10 +48,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\bg.png">
-      <Name>bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+    <Compile Include="Anim\beetleIdle.anim">
+      <Name>beetleIdle</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
     </Compile>
     <Compile Include="Image\blue.png">
       <Name>blue</Name>
@@ -102,54 +102,47 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\waspIdle.anim">
+    <Compile Include="Anim\waspIdle.anim">
       <Name>waspIdle</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Image\waspIdleSheet.png">
+    <Compile Include="Anim\waspIdleSheet.png">
       <Name>waspIdleSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\beetlePunchSheet.png">
+    <Compile Include="Anim\beetlePunchSheet.png">
       <Name>beetlePunchSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\beetleIdleSheet.png">
+    <Compile Include="Anim\beetleIdleSheet.png">
       <Name>beetleIdleSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\waspPunchSheet.png">
+    <Compile Include="Anim\waspPunchSheet.png">
       <Name>waspPunchSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\waspPunch.anim">
+    <Compile Include="Anim\waspPunch.anim">
       <Name>waspPunch</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\beetleIdle.anim">
-      <Name>beetleIdle</Name>
-      <Importer>AnimationImporter</Importer>
-      <Processor>AnimationProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Image\beetlePunch.anim">
+    <Compile Include="Anim\beetlePunch.anim">
       <Name>beetlePunch</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
@@ -184,17 +177,46 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\waspRecoilSheet.png">
+    <Compile Include="Anim\waspRecoilSheet.png">
       <Name>waspRecoilSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\waspRecoil.anim">
+    <Compile Include="Anim\waspRecoil.anim">
       <Name>waspRecoil</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Anim\beetleRecoil.anim">
+      <Name>beetleRecoil</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Anim\beetleRecoilSheet.png">
+      <Name>beetleRecoilSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\mainBg.png">
+      <Name>mainBg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\draw.png">
+      <Name>draw</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

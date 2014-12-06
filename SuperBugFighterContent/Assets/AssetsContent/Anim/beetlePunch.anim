@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-  <sheet>Image/beetleIdleSheet.png</sheet>
-  <fps>10</fps>
-  <width>150</width>
+  <sheet>Anim/beetlePunchSheet.png</sheet>
+  <fps>40</fps>
+  <width>177</width>
   <height>170</height>
   <row>1</row>
-  <col>3</col>
+  <col>5</col>
 </XnaContent>
