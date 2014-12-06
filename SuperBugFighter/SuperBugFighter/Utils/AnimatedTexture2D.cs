@@ -12,20 +12,24 @@ namespace Bug.Utils
         private Texture2D sheet;
         
         private double frameTime, elapsedTime;
-        private int index, w, h, row, col;
+        private int fps, index, w, h, row, col;
 
-        public AnimatedTexture2D(Texture2D sheet_, int w_, int h_, int row_, int col_, int fps)
+        public bool Looped { get; set; }
+
+        public AnimatedTexture2D(Texture2D sheet_, int w_, int h_, int row_, int col_, int fps_)
         {
             sheet = sheet_;
 
             index = 0;
+            Looped = false;
             w = w_;
             h = h_;
             row = row_;
             col = col_;
             elapsedTime = 0;
 
-            SetFPS(fps);
+            fps = fps_;
+            SetFPS(fps_);
         }
 
         public void SetFPS(int fps)
@@ -45,6 +49,7 @@ namespace Bug.Utils
                 if (index >= row * col)
                 {
                     index = 0;
+                    Looped = true;
                 }
 
                 elapsedTime = elapsedTime % frameTime;
@@ -54,6 +59,7 @@ namespace Bug.Utils
         public void Reset()
         {
             index = 0;
+            Looped = false;
         }
 
         public Texture2D GetSheet()
@@ -79,6 +85,17 @@ namespace Bug.Utils
         public int GetHeight()
         {
             return h;
+        }
+
+
+        internal double GetNumFrames()
+        {
+            return row * col;
+        }
+
+        internal double GetFps()
+        {
+            return fps;
         }
     }
 }
