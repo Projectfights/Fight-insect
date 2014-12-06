@@ -43,7 +43,7 @@ namespace Bug.GameObjects
 
         private Vector2 getOverlayPos()
         {
-            return new Vector2((int)(Pos.X + anim.GetWidth() / 2 - 32), (int)(Pos.Y - 100));
+            return new Vector2((int)(Pos.X + anim.GetWidth() / 2 - 10), (int)(Pos.Y - 50));
         }
 
         public Fighter(Vector2 pos, Texture2D overlay_, AnimatedTexture2D idleAnim_, AnimatedTexture2D punchAnim_, FighterInput input_, HitBox punch_, bool flip_, float speed_, double health_, double power_)
@@ -107,7 +107,13 @@ namespace Bug.GameObjects
             {
                 idleAnim.Reset();
                 punching = false;
+
+                if (flip)
+                {
+                    SetPos(new Vector2(Pos.X + punchAnim.GetWidth() - idleAnim.GetWidth(), Pos.Y));
+                }
             }
+
 
             //Punch if punch key is pressed
             if (input.punch() && !punching)
@@ -115,6 +121,11 @@ namespace Bug.GameObjects
                 punch.Trigger();
                 punchAnim.Reset();
                 punching = true;
+
+                if (flip)
+                {
+                    SetPos(new Vector2(Pos.X - punchAnim.GetWidth() + idleAnim.GetWidth(), Pos.Y));
+                }
             }
         }
 

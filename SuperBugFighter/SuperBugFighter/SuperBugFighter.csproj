@@ -124,6 +124,12 @@
     <None Include="Content\Image\buttonUp.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Image\p1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Image\p2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Image\red.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
