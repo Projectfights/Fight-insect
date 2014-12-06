@@ -25,6 +25,7 @@ namespace Bug.Screens.Concrete
         private Background bg;
         private Fighter p1, p2;
         private HealthBar h1, h2;
+        private Wall w1, w2;
 
         private AnimatedTexture2D LoadAnim(String name)
         {
@@ -83,13 +84,16 @@ namespace Bug.Screens.Concrete
             h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), false, new Vector2(10, 10));
             h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), true, new Vector2(widthScreen - 110, 10));
 
+            w1 = new Wall(new Rectangle(-30,-1000,30,1000+heightScreen));
+            w2 = new Wall(new Rectangle(widthScreen, -1000, 30, 1000+heightScreen));
+
         }
 
         public override void Update(GameTime gameTime)
         {
             if (!pause)
             {
-                p.Update(gameTime, new List<Dynamic>() { p1, p2 }, new List<GameObject>() { p1, p2, p1.GetPunch(), p2.GetPunch() });
+                p.Update(gameTime, new List<Dynamic>() { p1, p2 }, new List<GameObject>() { p1, p2, p1.GetPunch(), p2.GetPunch(), w1, w2 });
                 p1.Update(gameTime);
                 p2.Update(gameTime);
 
