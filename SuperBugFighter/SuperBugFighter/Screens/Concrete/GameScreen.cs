@@ -106,12 +106,12 @@ namespace Bug.Screens.Concrete
                 else if (p2.Health <= 0)
                 {
                     // P1 Wins
-                    tex = Load<Texture2D>("Image/blue");
+                    tex = Load<Texture2D>("Image/p1win");
                 }
                 else if (p1.Health <= 0)
                 {
                     // P2 Wins
-                    tex = Load<Texture2D>("Image/blue");
+                    tex = Load<Texture2D>("Image/p2win");
                 }
 
                 if (tex != null)

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <sheet>Image/waspRecoilSheet.png</sheet>
+  <fps>10</fps>
+  <width>144</width>
+  <height>158</height>
+  <row>1</row>
+  <col>4</col>
+</XnaContent>
