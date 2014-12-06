@@ -23,7 +23,10 @@ namespace Bug.Screens.Concrete
         {
             p = new Physics();
             bg = new Background(Load<Texture2D>("Image/stage"));
-            
+
+            var red = Load<Texture2D>("Image/red");
+            var blue = Load<Texture2D>("Image/blue");
+
             var sheet = Load<Texture2D>("Image/waspIdleSheet");
             var anim = Load<AnimatedTexture2D>("Image/waspIdle");
             anim.SetSheet(sheet);
@@ -33,10 +36,10 @@ namespace Bug.Screens.Concrete
             var in1 = new FighterInput(PlayerIndex.One);
             var in2 = new FighterInput(PlayerIndex.Two);
 
-            p1 = new Fighter(new Vector2(50, 150), anim, in1, false, .5f);
-            p2 = new Fighter(new Vector2(440, 150), anim2, in2, true, .5f);
-            h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), new Vector2(10, 10));
-            h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), new Vector2(widthScreen - 110, 10));
+            p1 = new Fighter(new Vector2(50, 150), blue, anim, in1, false, .5f);
+            p2 = new Fighter(new Vector2(440, 150), red, anim2, in2, true, .5f);
+            h1 = new HealthBar(p1, blue, new Vector2(10, 10));
+            h2 = new HealthBar(p2, red, new Vector2(widthScreen - 110, 10));
         }
 
         public override void Update(GameTime gameTime)

@@ -1,4 +1,5 @@
-﻿using Bug.Systems;
+﻿using Bug.Display;
+using Bug.Systems;
 using Bug.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +14,8 @@ namespace Bug.GameObjects
     //A player-controlled fighter
     class Fighter : Dynamic
     {
+        private Image overlay;
+
         //Fighter texture
         private AnimatedTexture2D anim;
 
@@ -26,9 +29,18 @@ namespace Bug.GameObjects
         //Figher health
         public double Health {get; private set; }
 
-        public Fighter(Vector2 pos, AnimatedTexture2D anim_, FighterInput input_, bool flip_, float speed_) : base(pos)
+        private Vector2 getOverlayPos()
+        {
+            return new Vector2((int)(Pos.X + anim.GetWidth() / 2 - 32), (int)(Pos.Y - 100));
+        }
+
+        public Fighter(Vector2 pos, Texture2D overlay_, AnimatedTexture2D anim_, FighterInput input_, bool flip_, float speed_) : base(pos)
         {
             anim = anim_;
+
+            Vector2 ov = getOverlayPos();
+            overlay = new Image((int) ov.X, (int) ov.Y, overlay_);
+
             input = input_;
             flip = flip_;
             speed = speed_;
@@ -71,6 +83,9 @@ namespace Bug.GameObjects
 
         public override void Update(GameTime gameTime)
         {
+            Vector2 ov = getOverlayPos();
+            overlay.x = (int) ov.X;
+            overlay.y = (int) ov.Y;
             anim.UpdateTime(gameTime);
             HandleInputs();
         }
@@ -79,6 +94,7 @@ namespace Bug.GameObjects
         {
             //spriteBatch.Draw(tex, GetBoundingBox(), new Rectangle(0, 0, tex.Width, tex.Height), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             spriteBatch.Draw(anim.GetSheet(), GetBoundingBox(), anim.GetWindow(), Color.White, 0, Vector2.Zero, flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            overlay.Draw(spriteBatch);
         }
 
         public override Rectangle GetBoundingBox()
