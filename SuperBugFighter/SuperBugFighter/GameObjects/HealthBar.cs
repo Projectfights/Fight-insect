@@ -11,28 +11,32 @@ namespace Bug.GameObjects
         Texture2D tex;
 
         int baseWidth;
+        bool flip;
 
-        public HealthBar(Fighter fighter, Texture2D tex) : base()
+        public HealthBar(Fighter fighter, Texture2D tex_, bool flip_) : base()
         {
             f = fighter;
-            this.tex = tex;
+            tex = tex_;
             baseWidth = 100;
+            flip = flip_;
         }
 
-        public HealthBar(Fighter fighter, Texture2D tex, Vector2 pos)
+        public HealthBar(Fighter fighter, Texture2D tex_, bool flip_, Vector2 pos)
             : base(pos)
         {
             f = fighter;
-            this.tex = tex;
+            tex = tex_;
             baseWidth = 100;
+            flip = flip_;
         }
 
-        public HealthBar(Fighter fighter, Texture2D tex, Vector2 pos, int baseWidth)
+        public HealthBar(Fighter fighter, Texture2D tex_, bool flip_, Vector2 pos, int baseWidth_)
             : base(pos)
         {
             f = fighter;
-            this.tex = tex;
-            this.baseWidth = baseWidth;
+            tex = tex_;
+            baseWidth = baseWidth_;
+            flip = flip_;
         }
 
         public override void Update(GameTime t)
@@ -47,7 +51,7 @@ namespace Bug.GameObjects
 
         public override Rectangle GetBoundingBox()
         {
-            return new Rectangle((int)Pos.X, (int)Pos.Y, (int)(baseWidth * f.Health / 100.0), 20);
+            return new Rectangle((int)Pos.X + (flip?(int)(baseWidth * (1- f.Health / 100.0)):0), (int)Pos.Y, (int)(baseWidth * f.Health / 100.0), 20);
         }
     }
 }

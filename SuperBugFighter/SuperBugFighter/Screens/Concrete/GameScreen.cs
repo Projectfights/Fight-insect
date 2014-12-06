@@ -76,8 +76,8 @@ namespace Bug.Screens.Concrete
             p1 = GetFighter(pos1, blue, in1, false, Settings.P1_FIGHTER);
             p2 = GetFighter(pos2, red, in2, true, Settings.P2_FIGHTER);
 
-            h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), new Vector2(10, 10));
-            h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), new Vector2(widthScreen - 110, 10));
+            h1 = new HealthBar(p1, Load<Texture2D>("Image/blue"), false, new Vector2(10, 10));
+            h2 = new HealthBar(p2, Load<Texture2D>("Image/red"), true, new Vector2(widthScreen - 110, 10));
         }
 
         public override void Update(GameTime gameTime)
