@@ -47,7 +47,7 @@ namespace Bug.GameObjects
 
         public override Rectangle GetBoundingBox()
         {
-            return new Rectangle((int)Pos.X, (int)Pos.Y, (int)(baseWidth * f.Health), 20);
+            return new Rectangle((int)Pos.X, (int)Pos.Y, (int)(baseWidth * f.Health / 100.0), 20);
         }
     }
 }

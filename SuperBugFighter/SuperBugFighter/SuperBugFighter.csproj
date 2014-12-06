@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\HitBox.cs" />
     <Compile Include="GameObjects\FighterInput.cs" />
     <Compile Include="GameObjects\HealthBar.cs" />
     <Compile Include="Display\Button.cs" />
