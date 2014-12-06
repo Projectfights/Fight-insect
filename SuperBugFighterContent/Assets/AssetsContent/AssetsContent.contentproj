@@ -73,24 +73,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Image\testAnim.png">
-      <Name>testAnim</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Image\testAnimSelect.png">
-      <Name>testAnimSelect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Image\test.anim">
-      <Name>test</Name>
-    </Compile>
-    <Compile Include="Image\testSelect.anim">
-      <Name>testSelect</Name>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Font\text.spritefont">
@@ -113,24 +95,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\beetle.png">
-      <Name>beetle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Audio\Menu.wav">
       <Name>Menu</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Image\beetle2.png">
-      <Name>beetle2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +111,48 @@
   <ItemGroup>
     <Compile Include="Image\waspIdle.anim">
       <Name>waspIdle</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\beetlePunchSheet.png">
+      <Name>beetlePunchSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\beetleIdleSheet.png">
+      <Name>beetleIdleSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\waspPunchSheet.png">
+      <Name>waspPunchSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\waspPunch.anim">
+      <Name>waspPunch</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\beetleIdle.anim">
+      <Name>beetleIdle</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Image\beetlePunch.anim">
+      <Name>beetlePunch</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
