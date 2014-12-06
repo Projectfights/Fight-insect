@@ -42,7 +42,7 @@ namespace Bug.Screens.Concrete
             Button loadGame = new TextButton(centerX, buttonStartY + up.Height + buttonSpacing, up, down, font, "Load Game");
             Button options = new TextButton(centerX, buttonStartY + 2 * (up.Height + buttonSpacing), up, down, font, "Options");
 
-            newGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<GameScreen>(); };
+            newGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<SelectScreen1>(); };
             loadGame.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<LoadGameScreen>(); };
             options.select += delegate() { soundEffectInstance.Stop(); ChangeScreen<OptionScreen>(); };
 

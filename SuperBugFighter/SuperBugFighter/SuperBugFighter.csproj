@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Display\CharacterButton.cs" />
     <Compile Include="GameObjects\HitBox.cs" />
     <Compile Include="GameObjects\FighterInput.cs" />
     <Compile Include="GameObjects\HealthBar.cs" />
@@ -58,9 +59,11 @@
     <Compile Include="Screens\Concrete\LoadGameScreen.cs" />
     <Compile Include="Screens\Concrete\MainMenuScreen.cs" />
     <Compile Include="Screens\Concrete\OptionScreen.cs" />
+    <Compile Include="Screens\Concrete\SelectScreen.cs" />
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Utils\AnimatedTexture2D.cs" />
     <Compile Include="Utils\AnimatedTexture2DReader.cs" />
+    <Compile Include="Utils\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -90,6 +93,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\Audio\Menu.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
