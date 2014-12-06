@@ -165,6 +165,8 @@ namespace Bug.GameObjects
                 {
                     this.Health -= h.GetDamage();
                     invulnTime = 1000;
+                    punching = true;
+                    anim.Reset();
                 }
             }
             if (other is Fighter)
